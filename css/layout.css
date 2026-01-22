@@ -233,7 +233,7 @@ footer {
   /* padding-left: calc(var(--ids__density) * 1em); */
   /* padding-right: calc(var(--ids__density) * 1em); */
   top: 0;
-  /* width: 100%; */
+  width: calc(100% + var(--ids__density) * 0.5em);
   /* height: calc(var(--ids__density) * 4em); */
   background-color: rgba(var(--ids__background-RGB), 1);
   /* box-shadow: 0 0 10px rgba(var(--ids__black-RGB), 1); */

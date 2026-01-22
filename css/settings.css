@@ -21,6 +21,7 @@ body {
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
   overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* Density and radius */
@@ -51,7 +52,6 @@ html {
   --desktop-viewport-max: 1500;
 
   font-size: calc(var(--mobile-font-size-min) * 1px);
-  overflow-x: hidden;
 
   @media screen and (min-width: 320px) {
     font-size: calc(var(--mobile-font-size-min) * 1px + (var(--mobile-font-size-max) - var(--mobile-font-size-min)) * ((100vw - var(--mobile-viewport-min) * 1px) / (var(--mobile-desktop-breakpoint) - var(--mobile-viewport-min))));
