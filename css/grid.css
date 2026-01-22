@@ -1,0 +1,74 @@
+.debugger {
+  --debuggerTopCompensator: -3px;
+  /* Скомпенсируем начало сетки дебаггера на сдвиг от шапки */
+  --debuggerLineHeight: 9px;
+  /* Расстояние между линейками */
+  --debuggerGutter: 18px;
+  /* Межколонник, используемый на сайте */
+
+  display: none;
+  position: absolute;
+  top: var(--debuggerTopCompensator);
+  right: 0;
+  left: 0;
+  z-index: 999999;
+  min-height: 100lvh;
+  background-image: linear-gradient(to bottom, grey .5px, transparent .5px);
+  /* Рисуем горизонтальные линеечки через каждые 9 пк */
+  background-size: var(--debuggerLineHeight) var(--debuggerLineHeight);
+  pointer-events: none;
+}
+
+.debugger.is__active {
+  display: block;
+}
+
+@media (resolution < 2dppx) {
+  .debugger {
+    background-image: linear-gradient(to bottom, grey 1px, transparent 1px);
+  }
+}
+
+.debugger-cols {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 6%;
+  right: 6%;
+  /* Пусть у нашего сайта поля в 6% на десктопах и лаптопах */
+  margin-left: calc(var(--debuggerGutter) / -2);
+  margin-right: calc(var(--debuggerGutter) / -2);
+  display: flex;
+  opacity: .15;
+}
+
+@media (width <=768px) {
+  .debugger-cols {
+    left: 20px;
+    /* А на мобильных поля зафиксированы в 20 пикселей */
+    right: 20px;
+  }
+}
+
+.debugger-cols div {
+  flex: 1;
+  border: calc(var(--debuggerGutter) / 2) solid #000;
+  /* Рисуем колонки с полями-бордерами */
+  background: red;
+}
+
+@media (width <=1500px) {
+  .debugger-cols div:nth-child(-n+4) {
+    display: none;
+  }
+
+  /* На лаптопах оставляем 12 колонок */
+}
+
+@media (width <=768px) {
+  .debugger-cols div:nth-child(-n+12) {
+    display: none;
+  }
+
+  /* На мобильных оставляем 4 колонки */
+}
