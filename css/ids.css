@@ -468,6 +468,8 @@
 
     @media (width < 767px) {
       /* padding-left: calc(var(--ids__density) * 1em); */
+      margin: 0;
+      margin-top: calc(var(--ids__density) * 1em);
       padding-right: calc(var(--ids__density) * 1em);
       border-radius: 0;
     }
