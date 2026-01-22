@@ -352,7 +352,7 @@
     &.secondary {
       opacity: 0.2;
       /* font-size: 1.5em; */
-      margin-left: calc(var(--ids__density) * 0.1025em);
+      margin-left: calc(var(--ids__density) * 0.075em);
       margin-bottom: 0.05em;
       /* margin-top: 0.25em; */
 
@@ -469,6 +469,7 @@
     @media (width < 767px) {
       /* padding-left: calc(var(--ids__density) * 1em); */
       padding-right: calc(var(--ids__density) * 1em);
+      border-radius: 0;
     }
   }
 

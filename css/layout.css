@@ -227,11 +227,11 @@ footer {
 .section-heading {
   /* margin-top: calc(var(--ids__density) * 1em); */
   position: sticky;
-  margin-left: calc(var(--ids__density) * -1.35em);
-  margin-right: calc(var(--ids__density) * -1.35em);
-  /* margin: 0 calc(var(--ids__density) * -1em); */
-  padding-left: calc(var(--ids__density) * 1em);
-  padding-right: calc(var(--ids__density) * 1em);
+  /* margin-left: calc(var(--ids__density) * -1.35em); */
+  /* margin-right: calc(var(--ids__density) * -1.35em); */
+  margin: 0 calc(var(--ids__density) * -0.25em);
+  /* padding-left: calc(var(--ids__density) * 1em); */
+  /* padding-right: calc(var(--ids__density) * 1em); */
   top: 0;
   /* width: 100%; */
   /* height: calc(var(--ids__density) * 4em); */
