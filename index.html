@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="css/promo-block.css">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/settings.css">
+  <link rel="stylesheet" href="css/footnotes.css">
 </head>
 
 <body class="ids">
@@ -62,17 +63,19 @@
   <img class="me" src="assets/images/me.jpg" alt="Валерий Дмитриев">
   <div class="ids__space M"></div>
   <div class="ids__text-width">
-    <p lang="ru" class="loud">Валерий Дмитриев, <br>технический дизайнер <!-- Опыт работы — 3,5 года. -->
+    <p lang="ru" class="loud">Валерий Дмитриев, <br>дизайнер и веб-разработчик</p>
+    <p lang="ru"><!-- <span style="font-weight: 700;">Валерий Дмитриев, дизайнер и веб-разработчик.
+      </span> -->С&nbsp;2022 года работаю над&nbsp;проектами информационного дизайна, навигации
+      и&nbsp;автоматизации верстки.
+      <!-- Создал
+      <a href="https://t.me/izhevsk_transport_bot" target="_blank">систему транспортной навигации</a>, <a
+        href="https://t.me/izhevsk_transport_bot" target="_blank">схему движения автобусов</a> и&nbsp;<a
+        href="https://t.me/izhevsk_transport_bot" target="_blank">генератор адресных табличек</a> для&nbsp;Ижевска. -->
     </p>
-    <!-- <div class="ids__space S"></div> -->
-    <p>С 2022 года работаю с проектами навигации, городской среды, инфографики и автоматизации верстки. Создал <a
-        href="https://t.me/izhevsk_transport_bot" target="_blank">систему транспортной навигации</a>, <a
-        href="https://t.me/izhevsk_transport_bot" target="_blank">схему автобусов</a> и <a
-        href="https://t.me/izhevsk_transport_bot" target="_blank">генератор адресных табличек</a> для Ижевска.</p>
-    <div class="ids__space M"></div>
+    <div class="ids__space S"></div>
 
     <a class="button primary" href="https://t.me/dmivaleriy" target="_blank">Телеграм</a>
-    <a class="button link" href="mailto:dmivaleriy@ya.ru" target="_blank">Резюме</a>
+    <a class="button link" href="#cv">Резюме</a>
 
   </div>
 </div>
@@ -80,141 +83,336 @@
 
 <!-- ПОРТФОЛИО -->
 <div class="ids__wrapper">
+  <div class="ids__text-width">
+    <h6 class="secondary">Центр территориального развития Удмуртии ⋅ 2025</h6>
+    <h2>Генератор адресных <nobr>табличек Ижевска</nobr>
+    </h2>
+    <p>Адресные таблички&nbsp;&mdash; один из&nbsp;самых тиражируемых объектов городского дизайна. Чтобы макеты
+      выглядели единообразно, я&nbsp;сделал генератор ПДФ-файлов.</p>
+  </div>
+  <aside>
+    <!-- <div class="ids__space S"></div> -->
+    <div>
+      <video style="border-radius: var(--ids__radius); overflow: hidden; width: 100%; object-fit: cover;"
+        src="assets/images/projects/Screen Recording 2026-01-23 at 17.20.44.mov"
+        autoplay muted loop></video>
+    </div>
+    <div class="ids__text-width">
+      <p class="aside">Все работает автоматически прямо в&nbsp;браузере&nbsp;&mdash; не&nbsp;нужно ничего скачивать
+        и&nbsp;устанавливать. Шрифт не&nbsp;слетит, невозможно ошибиться с&nbsp;цветом или&nbsp;размером,&nbsp;—
+        а&nbsp;значит
+        все макеты
+        будут
+        соответствовать <a class="aside" href="">гайдлайнам</a>.
+      </p>
+    </div>
+    <div class="ids__space S"></div>
+    <div style="display: flex; flex-direction: row; gap: 1em;">
+      <div>
+        <img style="border-radius: var(--ids__radius); overflow: hidden;"
+          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
+          alt="Photo by Jan van der Wolf">
+        <p class="aside">Автозаполнение адреса исключает ошибки и&nbsp;опечатки.</p>
+      </div>
+      <div>
+        <img style="border-radius: var(--ids__radius); overflow: hidden;"
+          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
+          alt="Photo by Jan van der Wolf">
+        <p class="aside" lang="ru">Перевод на&nbsp;удмурт&shy;ский язык подставляется автоматически.</p>
+      </div>
+    </div>
+    <div class="ids__space S"></div>
+    <div style="display: flex; flex-direction: row; gap: 1em;">
+      <div>
+        <img style="border-radius: var(--ids__radius); overflow: hidden;"
+          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
+          alt="Photo by Jan van der Wolf">
+        <p class="aside">Все макеты — в&nbsp;миллиметрах и&nbsp;ЦМИКе, можно сразу отдавать в&nbsp;типографию.</p>
+      </div>
+      <div>
+        <img style="border-radius: var(--ids__radius); overflow: hidden;"
+          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
+          alt="Photo by Jan van der Wolf">
+        <p class="aside" lang="ru">Доступны варианты для разных типов зданий.</p>
+      </div>
+    </div>
+
+    <!-- footnotes example -->
+    <!--     <div class="ids__text-width">
+      <p>
+        Это простой текст с
+        <ids-footnote-link>первой сноской</ids-footnote-link>
+        и ещё одной
+        <ids-footnote-link>второй сноской</ids-footnote-link>
+        для демонстрации.
+      </p>
+
+      <ids-footnote>
+        <p>
+          Это содержимое первой сноски. Оно может включать любую разметку:
+          параграфы, ссылки, списки.
+        </p>
+      </ids-footnote>
+
+      <ids-footnote>
+        <p>
+          А это вторая сноска. Обратите внимание, что номер появляется
+          автоматически.
+        </p>
+        <p>
+          Сноска может содержать несколько параграфов. Если контент
+          слишком длинный и не помещается на экране, появится кнопка
+          «Закрыть», и прокрутка основной страницы блокируется.
+        </p>
+      </ids-footnote>
+
+    </div> -->
+    <!-- <div class="ids__space S"></div> -->
+
+    <div class="ids__space S"></div>
+    <a class="button primary aside" href="https://t.me/izhevsk_transport_bot" target="_blank">Затестить
+      генератор</a>
+    <div class="ids__space S"></div>
+  </aside>
+
+  <div class="ids__space XL"></div>
+
+  <div class="ids__text-width">
+    <h6 class="secondary">Сделано для ЦТР УР в 2024 году</h6>
+    <h2>Схема движения автобусов Ижевска</h2>
+    <p>Переосмыслил.</p>
+  </div>
+
+  <aside>
+    <!-- <div class="ids__space S"></div> -->
+    <div>
+      <img style="border-radius: var(--ids__radius); overflow: hidden;"
+        src="assets/images/Screenshot 2026-01-25 at 13.03.23.png"
+        alt="Photo by Jan van der Wolf">
+      <p class="aside">Генератор адресных табличек</p>
+    </div>
+    <div class="ids__space S"></div>
+
+    <div style="display: flex; flex-direction: row; gap: 1em;">
+      <div>
+        <img style="border-radius: var(--ids__radius); overflow: hidden;"
+          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
+          alt="Photo by Jan van der Wolf">
+        <p class="aside">Автозаполнение адреса исключает ошибки и&nbsp;опечатки.</p>
+      </div>
+      <div>
+        <img style="border-radius: var(--ids__radius); overflow: hidden;"
+          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
+          alt="Photo by Jan van der Wolf">
+        <p class="aside" lang="ru">Перевод на&nbsp;удмурт&shy;ский язык подставляется автоматически.</p>
+      </div>
+    </div>
+
+    <div class="ids__space S"></div>
+    <a class="button primary aside" href="https://t.me/izhevsk_transport_bot" target="_blank">Посмотреть ПДФ</a>
+    <div class="ids__space S"></div>
+  </aside>
+
+  <div class="ids__space XL"></div>
+  <div class="ids__text-width">
+    <h6 class="secondary">Сделано для ЦТР УР в 2025 году</h6>
+    <h2>Система транспортной <nobr>навигации Ижевска</nobr>
+    </h2>
+    <p>Множество информационных наклеек в общественном транспорте создает визуальный мусор, мешающий пассажирам и
+      ухудшающий облик города. Я
+      систематизировал информацию и сделал единую систему верстки носителей для всего городского транспорта.</p>
+  </div>
+  <aside>
+    <div style="display: flex; flex-direction: row; gap: 1em;">
+      <div>
+        <img style="border-radius: var(--ids__radius); overflow: hidden;"
+          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
+          alt="Photo by Jan van der Wolf">
+        <p class="aside">Разнобой в информационных носителях постепенно засоряет визуальное пространство.</p>
+      </div>
+      <div>
+        <img style="border-radius: var(--ids__radius); overflow: hidden;"
+          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
+          alt="Photo by Jan van der Wolf">
+        <p class="aside">Единая система верстки носителей позволяет быстро и эффективно обновлять информацию.</p>
+      </div>
+    </div>
+    <div class="ids__space S"></div>
+    <div>
+      <img style="border-radius: var(--ids__radius); overflow: hidden;"
+        src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
+        alt="Photo by Jan van der Wolf">
+      <div class="ids__text-width">
+        <p class="aside">Простая верстка не перегружена дизайном, а обязательная юридическая информация аккуратно
+          сверстана.</p>
+      </div>
+
+      <!-- <div class="ids__space S"></div> -->
+      <!-- 
+      <div class="ids__space S"></div>
+      <a class="button primary aside" href="https://t.me/izhevsk_transport_bot" target="_blank">Затестить
+        генератор</a>
+      <div class="ids__space S"></div> -->
+  </aside>
+</div>
+
+
+<div class="ids__space XL"></div>
+<!-- ВСЕ ПРОЕКТЫ -->
+<div class="ids__wrapper">
+  <div class="ids__text-width">
+    <!-- <h2>Все проекты</h2> -->
+    <p class="loud">Все проекты</p>
+  </div>
   <!-- <div class="ids__space M"></div> -->
-  <div class="ids__text-width">
-    <h6 class="secondary">
-      <nobr>Компания</nobr> · 2024–2025
-    </h6>
-    <h2>Генератор адресных табличек</h2>
-    <p>Описание в паре предложений с точкой в конце. Описание в паре предложений с точкой в конце. Описание в паре
-      предложений с точкой в конце.</p>
-  </div>
-  <aside>
-    <p class="aside">За 9 месяцев работы поучаствовал в разных
-      проектах: от ценников для «Пятёрочки»
-      до автоматизации
-      верстки сотен макетов
-      навигации в главном офисе «Промсвязьбанка».</p>
-    </p>
-    <div>
+  <div style="display: flex; flex-direction: row; gap: 1em; @media (width < 767px) { flex-direction: column; gap: 0; }">
+    <div style="display: flex; flex-direction: column; gap: 0.5em;">
+      <h3 class="">Техдизайн и верстка</a></h3>
+
+      <a href="https://t.me/izhevsk_transport_bot" target="_blank">
+        <img style="border-radius: var(--ids__radius); overflow: hidden;"
+          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
+          alt="Photo by Jan van der Wolf">
+        <!-- <p class="aside">Генератор адресных табличек</p> -->
+        <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+      </a>
+      <div class="ids__space S"></div>
+      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 0.5em;">
+      <h3 class="">Техдизайн и верстка</a></h3>
+
+      <a href="https://t.me/izhevsk_transport_bot" target="_blank">
+        <!-- <p class="aside">Генератор адресных табличек</p> -->
+        <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+      </a>
+      <div class="ids__space S"></div>
+      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
       <img style="border-radius: var(--ids__radius); overflow: hidden;"
         src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
         alt="Photo by Jan van der Wolf">
-      <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
+      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
     </div>
-    <div class="ids__space S"></div>
-    <p class="aside">За 9 месяцев работы поучаствовал в разных
-      проектах: от ценников для «Пятёрочки»
-      до автоматизации
-      верстки сотен макетов
-      навигации в главном офисе «Промсвязьбанка».</p>
-    </p>
-    <div style="display: flex; flex-direction: row; gap: 1em;">
-      <div>
+    <div style="display: flex; flex-direction: column; gap: 0.5em;">
+      <h3 class="">Техдизайн и верстка</a></h3>
+
+      <a href="https://t.me/izhevsk_transport_bot" target="_blank">
         <img style="border-radius: var(--ids__radius); overflow: hidden;"
           src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
           alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
+        <!-- <p class="aside">Генератор адресных табличек</p> -->
+        <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+      </a>
+      <div class="ids__space S"></div>
+      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
     </div>
 
-  </aside>
+  </div>
+  <!-- <div class="ids__space M"></div> -->
+
+  <!-- <div class="ids__space XL"></div> -->
+</div>
+
+
+<!-- CV -->
+<div id="cv"></div>
+<div class="ids__space XL"></div>
+<div class="ids__wrapper">
+  <div class="ids__text-width">
+    <!-- <h2>Опыт работы</h2> -->
+    <p class="loud">Опыт работы</p>
+    <h6 class="">Дизайнер <a href="https://vmeste.ru" target="_blank">в Студии Артемия Лебедева</a> ⋅ 2024–2025</h6>
+    <p class="cv">Организовал работу команды по спринтам. Наладил процессы между дизайном, разработкой, тестированием и
+      продактами.</p>
+    <p class="cv">Проекты: <a href="https://vmeste.ru/" target="_blank">Вместе.ру</a>, <a
+        href="https://vmeste.ru/business" target="_blank">ЛК Бизнеса</a>, <a href="https://vmeste.ru/uorg"
+        target="_blank">CRM для УК</a></p>
+  </div>
+
+  <div class="cv-container">
+    <!--    <div class="cv-year">
+      <h3 class="cv">2024–2025</h3>
+    </div> -->
+
+    <div class="cv-content">
+    </div>
+  </div>
+
+  <div class="ids__space M"></div>
+  <div class="cv-container">
+    <!--     <div class="cv-year">
+      <h3 class="cv">2022–2024</h3>
+    </div> -->
+
+    <div class="cv-content">
+      <h6 class="">Технический дизайнер <a href="https://vmeste.ru" target="_blank">в
+          ЦТР Удмуртии</a> ⋅ 2022–2024
+      </h6>
+      <p class="cv">Создал систему транспортной навигации для всего городского транспорта.</p>
+      <p class="cv">Проекты: <a href="https://t.me/izhevsk_transport_bot" target="_blank">Система транспортной
+          навигации</a>, <a href="https://t.me/izhevsk_transport_bot" target="_blank">Схема движения автобусов</a>, <a
+          href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a></p>
+    </div>
+  </div>
+
   <div class="ids__space XL"></div>
   <div class="ids__text-width">
-    <h6 class="secondary">
-      <nobr>Компания</nobr> · 2024–2025
-    </h6>
-    <h2>Генератор адресных табличек</h2>
-    <p>Описание в паре предложений с точкой в конце. Описание в паре предложений с точкой в конце. Описание в паре
-      предложений с точкой в конце.</p>
+    <p class="loud">Навыки</p>
   </div>
-  <aside>
 
-    <div class="ids__space S"></div>
-    <div>
-      <img style="border-radius: var(--ids__radius); overflow: hidden;"
-        src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-        alt="Photo by Jan van der Wolf">
-      <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-    </div>
-    <div class="ids__space S"></div>
 
-    <div>
-      <img style="border-radius: var(--ids__radius); overflow: hidden;"
-        src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-        alt="Photo by Jan van der Wolf">
-      <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
+  <!-- <aside> -->
+  <div style="display: flex; flex-direction: row; gap: 1em;">
+    <div style="width: 50%;">
+      <h3>Дизайн</h3>
+      <p class="">Информационный дизайн, навигация, архитектура, дизайн-коды, адресные таблички, навигация, оформление
+        фасадов, ретушь фасадов, вывески, адресные таблички, верстка документации.</p>
     </div>
-  </aside>
-  <div class="ids__space XL"></div>
-  <div class="ids__text-width">
-    <h6 class="secondary">
-      <nobr>Компания</nobr> · 2024–2025
-    </h6>
-    <h2>Генератор адресных табличек</h2>
-    <p>Описание в паре предложений с точкой в конце. Описание в паре предложений с точкой в конце. Описание в паре
-      предложений с точкой в конце.</p>
+    <div style="width: 50%;">
+      <h3>Инструменты</h3>
+      <p class="">Photoshop, Illustrator, Figma, Sketch, InDesign, Premiere Pro, After Effects, Blender, Unity, Unreal
+        Engine, Blender, Unity, Unreal Engine</p>
+    </div>
   </div>
-  <aside>
-    <p class="aside">За 9 месяцев работы поучаствовал в разных
-      проектах: от ценников для «Пятёрочки»
-      до автоматизации
-      верстки сотен макетов
-      навигации в главном офисе «Промсвязьбанка».</p>
-    </p>
-    <div style="display: flex; flex-direction: row; gap: 1em;">
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
+
+  <div class="ids__space M"></div>
+  <div style="display: flex; flex-direction: row; gap: 1em;">
+    <div style="width: 50%;">
+      <h3>Разработка</h3>
+      <p class="">HTML, CSS, JavaScript, jQuery, React, Vue.js, Node.js
+      </p>
+    </div>
+
+
+    <div style="width: 50%;">
+      <div class="cv-content">
+        <h3>Язык</h3>
+        <p class="">Русский, английский</p>
       </div>
     </div>
-    <div class="ids__space S"></div>
-    <div>
-      <img style="border-radius: var(--ids__radius); overflow: hidden;"
-        src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-        alt="Photo by Jan van der Wolf">
-      <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-    </div>
-    <p class="aside">За 9 месяцев работы поучаствовал в разных
-      проектах: от ценников для «Пятёрочки»
-      до автоматизации
-      верстки сотен макетов
-      навигации в главном офисе «Промсвязьбанка».</p>
-    </p>
-
-    <div>
-      <img style="border-radius: var(--ids__radius); overflow: hidden;"
-        src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-        alt="Photo by Jan van der Wolf">
-      <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-    </div>
-  </aside>
+  </div>
+  <!-- </aside> -->
 </div>
 
 <div class="ids__space L"></div>
 
-
 <!-- ПОДВАЛ -->
-<div class="ids__wrapper" style="/* background: rgba(var(--ids__surface-RGB), 1); */">
+<!-- <div class="ids__space XL"></div> -->
+<div class="ids__wrapper" style="background: rgba(var(--ids__surface-RGB), 1);">
+  <div class="ids__space L"></div>
 
-  <!-- <div class="ids__space L"></div> -->
+  <!-- <div class="ids__space XL"></div> -->
   <div class="ids__text-width">
-    <p class="loud">Люблю проекты с большой долей изобрета&shy;тельства и слож&shy;ными
-      тех&shy;ническими задачами.</p>
+    <!-- <h2 class="">Люблю задачи, в&nbsp;которых можно проявить изобрета&shy;тельность и&nbsp;смекалку.</h2> -->
+    <p class="loud">Люблю задачи, в&nbsp;которых можно проя&shy;вить изобрета&shy;тельность и&nbsp;смекалку.</p>
     <div class="ids__space S"></div>
 
     <a class="button primary" href="https://t.me/dmivaleriy" target="_blank">Написать в телеграм</a>
@@ -224,243 +422,7 @@
   </div>
 </div>
 
-<div class="ids__space L"></div>
-<div class="ids__wrapper">
-  <!-- <p class="loud">Примеры по годам</p> -->
-  <!-- <h1>Примеры по годам</h1> -->
-  <section>
-    <div class="section-heading">
-      <div class="ids__text-width">
-        <!-- <h1 class="secondary">2025</h1> -->
-        <h2 class="secondary">2025</h2>
-      </div>
-      <div class="section-heading-line"></div>
-    </div>
 
-    <div class="ids__space S"></div>
-    <div style="display: flex; flex-direction: row; gap: 1em;">
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-    </div>
-    <div class="ids__space S"></div>
-    <div>
-      <img style="border-radius: var(--ids__radius); overflow: hidden;"
-        src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-        alt="Photo by Jan van der Wolf">
-      <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-    </div>
-    <div class="ids__space S"></div>
-    <div style="display: flex; flex-direction: row; gap: 1em;">
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-    </div>
-  </section>
-  <div class="ids__space L"></div>
-  <section>
-    <div class="section-heading">
-      <div class="ids__text-width">
-        <h2 class="secondary">2024</h2>
-      </div>
-      <div class="section-heading-line"></div>
-    </div>
-
-    <div class="ids__space S"></div>
-    <div style="display: flex; flex-direction: row; gap: 1em;">
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-    </div>
-    <div class="ids__space S"></div>
-    <div>
-      <img style="border-radius: var(--ids__radius); overflow: hidden;"
-        src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-        alt="Photo by Jan van der Wolf">
-      <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-    </div>
-    <div class="ids__space S"></div>
-    <div style="display: flex; flex-direction: row; gap: 1em;">
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-    </div>
-    <div class="ids__space L"></div>
-    <!-- <aside> -->
-    <!-- <div class="ids__text-width"> -->
-    <p>В 2024 году моя работа попала в «Горячо» при отзыве на вакансию информационного дизайнера в Студию Лебедева.
-    </p>
-    <div class="ids__space S"></div>
-    <img style="border-radius: var(--ids__radius); overflow: hidden;"
-      src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-      alt="Photo by Jan van der Wolf">
-    <!-- </div> -->
-    <!-- </aside> -->
-  </section>
-</div>
-
-
-<div class="ids__space L"></div>
-<section>
-  <div class="ids__wrapper">
-    <div class="section-heading">
-      <div class="ids__text-width">
-        <h2 class="secondary">2023</h2>
-      </div>
-      <div class="section-heading-line"></div>
-    </div>
-    <div class="ids__space S"></div>
-    <div style="display: flex; flex-direction: row; gap: 1em;">
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-    </div>
-    <div class="ids__space S"></div>
-    <div>
-      <img style="border-radius: var(--ids__radius); overflow: hidden;"
-        src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-        alt="Photo by Jan van der Wolf">
-      <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-    </div>
-    <div class="ids__space S"></div>
-    <div style="display: flex; flex-direction: row; gap: 1em;">
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="ids__space L"></div>
-
-<section>
-  <div class="ids__wrapper">
-    <div class="section-heading">
-      <div class="ids__text-width">
-        <h2 class="loud secondary">2022</h2>
-      </div>
-      <div class="section-heading-line"></div>
-    </div>
-
-    <div class="ids__space S"></div>
-    <div style="display: flex; flex-direction: row; gap: 1em;">
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-    </div>
-    <div class="ids__space S"></div>
-    <div>
-      <img style="border-radius: var(--ids__radius); overflow: hidden;"
-        src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-        alt="Photo by Jan van der Wolf">
-      <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-    </div>
-    <div class="ids__space S"></div>
-    <div style="display: flex; flex-direction: row; gap: 1em;">
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <figcaption style="opacity: 0.5; margin-top: 0.5em;">Генератор адресных табличек</figcaption>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="ids__space L"></div>
-<!-- <div class="ids__space M"></div> -->
-<!-- </div> -->
 
 
     </div>
@@ -468,7 +430,7 @@
   </div>
   
 
-<div class="ids__wrapper" style="/* background: rgba(var(--ids__surface-RGB), 1); */">
+<div class="ids__wrapper" style="background: rgba(var(--ids__surface-RGB), 1);">
   <div class="ids__space S"></div>
   <div style="border-top: 1px solid rgba(var(--ids__text-RGB), 0.15); margin: 1rem 0; "></div>
 
@@ -486,6 +448,7 @@
   <script src="js/grid.js" defer></script>
   <script src="js/promo-block.js"></script>
   <script src="js/sleepy.js"></script>
+  <script src="js/footnotes.js"></script>
 
   <script src="js/lib/photoswipe.umd.min.js"></script>
   <script src="js/lib/photoswipe-lightbox.umd.min.js"></script>

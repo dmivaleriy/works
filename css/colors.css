@@ -1,15 +1,14 @@
 :root {
   --ids__text-RGB: 8, 11, 17;
+  --ids__text-secondary-RGB: 189, 190, 192;
   --ids__link-RGB: 255, 57, 1;
   --ids__hover-RGB: 255, 180, 4;
   --ids__accent-RGB: 255, 57, 1;
   --ids__code-RGB: 115, 120, 125;
   --ids__mark-RGB: 255, 225, 0;
-  --ids__surface-RGB: 238, 240, 242;
+  --ids__surface-RGB: 249, 250, 251;
   --ids__background-RGB: 255, 255, 255;
   --ids__black-RGB: 8, 11, 17;
-  --als: 244, 13, 0;
-  /* --ids__background-RGB: 243, 245, 244; */
 }
 
 body {
@@ -22,6 +21,6 @@ body {
     --ids__text-RGB: 255, 255, 255;
     --ids__background-RGB: 8, 11, 17;
     --ids__surface-RGB: 24, 27, 32;
-    --als: 255, 255, 255;
+    --ids__text-secondary-RGB: 100, 100, 100;
   }
 }
