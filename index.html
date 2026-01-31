@@ -16,20 +16,20 @@
   <link rel="apple-touch-icon" href="assets/images/favicon.png">
 
   <link rel="stylesheet" href="css/colors.css">
-  <link rel="stylesheet" href="css/gallery.css">
-  <link rel="stylesheet" href="css/photoswipe.css">
-  <link rel="stylesheet" href="css/grid.css">
-  <link rel="stylesheet" href="css/header.css">
+  <!-- <link rel="stylesheet" href="css/gallery.css"> -->
+  <!-- <link rel="stylesheet" href="css/photoswipe.css"> -->
+  <!-- <link rel="stylesheet" href="css/grid.css"> -->
+  <!-- <link rel="stylesheet" href="css/header.css"> -->
   <link rel="stylesheet" href="css/ids.css">
   <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/promo-block.css">
+  <!-- <link rel="stylesheet" href="css/promo-block.css"> -->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/settings.css">
-  <link rel="stylesheet" href="css/footnotes.css">
+  <!-- <link rel="stylesheet" href="css/footnotes.css"> -->
 </head>
 
 <body class="ids">
-  <div class="debugger">
+  <!--   <div class="debugger">
     <div class="debugger-cols">
       <div></div>
       <div></div>
@@ -48,7 +48,7 @@
       <div></div>
       <div></div>
     </div>
-  </div>
+  </div> -->
 
   <!-- % include 'header.html' % -->
 
@@ -59,14 +59,14 @@
 
 <!-- КАРТОЧКА -->
 <div class="ids__wrapper" style="/* background: rgba(var(--ids__text-RGB), 0.035); */">
-  <div class="ids__space L"></div>
-  <img class="me" src="assets/images/me.jpg" alt="Валерий Дмитриев">
   <div class="ids__space M"></div>
+  <img class="me" src="assets/images/me.jpg" alt="Валерий Дмитриев">
+  <div class="ids__space S"></div>
   <div class="ids__text-width">
-    <p lang="ru" class="loud">Валерий Дмитриев, <br>дизайнер и веб-разработчик</p>
-    <p lang="ru"><!-- <span style="font-weight: 700;">Валерий Дмитриев, дизайнер и веб-разработчик.
-      </span> -->С&nbsp;2022 года работаю над&nbsp;проектами информационного дизайна, навигации
-      и&nbsp;автоматизации верстки.
+    <!-- <p lang="ru" class="loud">Валерий Дмитриев, <br>дизайнер и веб-разработчик</p> -->
+    <p lang="ru"><span style="font-weight: 700;">Валерий Дмитриев, дизайнер <nobr>и веб-разработчик.</nobr>
+      </span><br>С&nbsp;2022 года работаю над&nbsp;проек&shy;тами информа&shy;ци&shy;онного дизайна, нави&shy;гации
+      и&nbsp;автоматизации вёрстки.
       <!-- Создал
       <a href="https://t.me/izhevsk_transport_bot" target="_blank">систему транспортной навигации</a>, <a
         href="https://t.me/izhevsk_transport_bot" target="_blank">схему движения автобусов</a> и&nbsp;<a
@@ -79,66 +79,56 @@
 
   </div>
 </div>
-<div class="ids__space XL"></div>
+<div class="ids__space L"></div>
 
 <!-- ПОРТФОЛИО -->
 <div class="ids__wrapper">
+  <!-- <aside> -->
   <div class="ids__text-width">
-    <h6 class="secondary">Центр территориального развития Удмуртии ⋅ 2025</h6>
-    <h2>Генератор адресных <nobr>табличек Ижевска</nobr>
-    </h2>
-    <p>Адресные таблички&nbsp;&mdash; один из&nbsp;самых тиражируемых объектов городского дизайна. Чтобы макеты
-      выглядели единообразно, я&nbsp;сделал генератор ПДФ-файлов.</p>
+    <!-- <h6 class="secondary">Разработчик и дизайнер ⋅ 2026</h6> -->
+    <!-- <p class="">Генератор адресных табличек Ижевска</p> -->
+    <!-- <p>Адресные таблички&nbsp;&mdash; один из&nbsp;самых тиражируемых объектов городского дизайна. Чтобы макеты
+      выглядели единообразно, я&nbsp;сделал генератор ПДФ-файлов.</p> -->
   </div>
-  <aside>
-    <!-- <div class="ids__space S"></div> -->
+  <div class="ids__space S"></div>
+  <div>
+    <img style="border-radius: var(--ids__radius); overflow: hidden;"
+      src="assets/images/izh-plates-generator/cover.jpg"
+      alt="Photo by Jan van der Wolf">
+    <!-- <video style="border-radius: var(--ids__radius); overflow: hidden; width: 100%; object-fit: cover;"
+      src="assets/images/projects/Screen Recording 2026-01-23 at 17.20.44.mov"
+      autoplay muted loop></video> -->
+  </div>
+  <div class="ids__text-width">
+    <p class="loud">Генератор адресных табличек Ижевска</p>
+    <p class="aside">Все работает автоматически прямо в&nbsp;браузере&nbsp;&mdash; не&nbsp;нужно ничего скачивать
+      и&nbsp;устанавливать. Шрифт не&nbsp;слетит, невозможно ошибиться с&nbsp;цветом или&nbsp;размером,&nbsp;—
+      а&nbsp;значит
+      все макеты
+      будут
+      соответствовать <a class="aside" href="">гайдлайнам</a>.
+    </p>
+  </div>
+  <div class="ids__space S"></div>
+  <div style="display: flex; flex-direction: row; gap: 1em;">
     <div>
-      <video style="border-radius: var(--ids__radius); overflow: hidden; width: 100%; object-fit: cover;"
-        src="assets/images/projects/Screen Recording 2026-01-23 at 17.20.44.mov"
-        autoplay muted loop></video>
+      <img style="border-radius: var(--ids__radius); overflow: hidden;"
+        src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
+        alt="Photo by Jan van der Wolf">
+      <p class="aside">Автозаполнение адреса исключает ошибки и&nbsp;опечатки.</p>
     </div>
-    <div class="ids__text-width">
-      <p class="aside">Все работает автоматически прямо в&nbsp;браузере&nbsp;&mdash; не&nbsp;нужно ничего скачивать
-        и&nbsp;устанавливать. Шрифт не&nbsp;слетит, невозможно ошибиться с&nbsp;цветом или&nbsp;размером,&nbsp;—
-        а&nbsp;значит
-        все макеты
-        будут
-        соответствовать <a class="aside" href="">гайдлайнам</a>.
-      </p>
+    <div>
+      <img style="border-radius: var(--ids__radius); overflow: hidden;"
+        src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
+        alt="Photo by Jan van der Wolf">
+      <p class="aside" lang="ru">Перевод на&nbsp;удмурт&shy;ский язык подставляется автоматически.</p>
     </div>
-    <div class="ids__space S"></div>
-    <div style="display: flex; flex-direction: row; gap: 1em;">
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <p class="aside">Автозаполнение адреса исключает ошибки и&nbsp;опечатки.</p>
-      </div>
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <p class="aside" lang="ru">Перевод на&nbsp;удмурт&shy;ский язык подставляется автоматически.</p>
-      </div>
-    </div>
-    <div class="ids__space S"></div>
-    <div style="display: flex; flex-direction: row; gap: 1em;">
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <p class="aside">Все макеты — в&nbsp;миллиметрах и&nbsp;ЦМИКе, можно сразу отдавать в&nbsp;типографию.</p>
-      </div>
-      <div>
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <p class="aside" lang="ru">Доступны варианты для разных типов зданий.</p>
-      </div>
-    </div>
+  </div>
+  <div class="ids__space S"></div>
 
-    <!-- footnotes example -->
-    <!--     <div class="ids__text-width">
+
+  <!-- footnotes example -->
+  <!--     <div class="ids__text-width">
       <p>
         Это простой текст с
         <ids-footnote-link>первой сноской</ids-footnote-link>
@@ -167,20 +157,22 @@
       </ids-footnote>
 
     </div> -->
-    <!-- <div class="ids__space S"></div> -->
+  <!-- <div class="ids__space S"></div> -->
 
-    <div class="ids__space S"></div>
-    <a class="button primary aside" href="https://t.me/izhevsk_transport_bot" target="_blank">Затестить
-      генератор</a>
-    <div class="ids__space S"></div>
-  </aside>
+  <div class="ids__space S"></div>
+  <a class="button primary aside" href="projects/izh-plates-generator/"
+    target="_blank">Затестить
+    генератор</a>
+  <div class="ids__space S"></div>
+  <!-- </aside> -->
 
   <div class="ids__space XL"></div>
 
   <div class="ids__text-width">
-    <h6 class="secondary">Сделано для ЦТР УР в 2024 году</h6>
+    <h6 class="secondary">Ведущий дизайнер ⋅ 2024</h6>
     <h2>Схема движения автобусов Ижевска</h2>
-    <p>Переосмыслил.</p>
+    <p>Проанализировал расписание движения 26 городских автобусов и визуально разделил маршруты в зависимости от частоты
+      движения.</p>
   </div>
 
   <aside>
@@ -215,7 +207,7 @@
 
   <div class="ids__space XL"></div>
   <div class="ids__text-width">
-    <h6 class="secondary">Сделано для ЦТР УР в 2025 году</h6>
+    <h6 class="secondary">Ведущий дизайнер ⋅ 2023</h6>
     <h2>Система транспортной <nobr>навигации Ижевска</nobr>
     </h2>
     <p>Множество информационных наклеек в общественном транспорте создает визуальный мусор, мешающий пассажирам и
@@ -261,64 +253,74 @@
 <!-- ВСЕ ПРОЕКТЫ -->
 <div class="ids__wrapper">
   <div class="ids__text-width">
-    <!-- <h2>Все проекты</h2> -->
     <p class="loud">Все проекты</p>
   </div>
   <!-- <div class="ids__space M"></div> -->
-  <div style="display: flex; flex-direction: row; gap: 1em; @media (width < 767px) { flex-direction: column; gap: 0; }">
-    <div style="display: flex; flex-direction: column; gap: 0.5em;">
-      <h3 class="">Техдизайн и верстка</a></h3>
+  <div class="all-projects">
+    <!-- <div style="/* display: flex; flex-direction: column; */"> -->
+    <h3 class="">Вёрстка</a></h3>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Название проекта длииное или</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Название проекта длииное или</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Название проекта длииное или</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Название проекта длииное или</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Название проекта длииное или</a>
+    <img style="border-radius: var(--ids__radius) * 0; overflow: hidden; width: 50%;"
+      src="assets/images/projects/5ka.png" alt="Photo by Jan van der Wolf">
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Название проекта длииное или</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Название проекта длииное или</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Название проекта длииное или</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Название проекта длииное или</a>
+    <!-- </div> -->
 
-      <a href="https://t.me/izhevsk_transport_bot" target="_blank">
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <!-- <p class="aside">Генератор адресных табличек</p> -->
-        <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
-      </a>
-      <div class="ids__space S"></div>
-      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
-      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
-      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
-      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 0.5em;">
-      <h3 class="">Техдизайн и верстка</a></h3>
+    <div class="ids__space S"></div>
+    <!-- <div style="/* display: flex; flex-direction: column; */"> -->
 
-      <a href="https://t.me/izhevsk_transport_bot" target="_blank">
-        <!-- <p class="aside">Генератор адресных табличек</p> -->
-        <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
-      </a>
-      <div class="ids__space S"></div>
-      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
-      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
-      <img style="border-radius: var(--ids__radius); overflow: hidden;"
-        src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-        alt="Photo by Jan van der Wolf">
-      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
-      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 0.5em;">
-      <h3 class="">Техдизайн и верстка</a></h3>
+    <h3 class="">Сайты</a></h3>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <!-- </div> -->
 
-      <a href="https://t.me/izhevsk_transport_bot" target="_blank">
-        <img style="border-radius: var(--ids__radius); overflow: hidden;"
-          src="assets/images/gallery/Photo by Jan van der Wolf_abstract-image-of-a-shadow-on-a-green-wall-and-blue-sky-11895895.jpg"
-          alt="Photo by Jan van der Wolf">
-        <!-- <p class="aside">Генератор адресных табличек</p> -->
-        <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
-      </a>
-      <div class="ids__space S"></div>
-      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
-      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
-      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
-      <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
-    </div>
+    <div class="ids__space S"></div>
+    <!-- <div style="/* display: flex; flex-direction: column; */"> -->
+
+    <h3 class="">Навигация</a></h3>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <!-- </div> -->
+
+    <div class="ids__space S"></div>
+    <!-- <div style="/* display: flex; flex-direction: column; */"> -->
+
+    <h3 class="">Медиа</a></h3>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <!-- </div> -->
+
+    <div class="ids__space S"></div>
+    <!-- <div style="/* display: flex; flex-direction: column; */"> -->
+
+    <h3 class="">Техдизайн</a></h3>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <a href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a>
+    <!-- </div> -->
 
   </div>
-  <!-- <div class="ids__space M"></div> -->
 
-  <!-- <div class="ids__space XL"></div> -->
+</div>
+<!-- <div class="ids__space M"></div> -->
+
+<!-- <div class="ids__space XL"></div> -->
 </div>
 
 
@@ -327,40 +329,36 @@
 <div class="ids__space XL"></div>
 <div class="ids__wrapper">
   <div class="ids__text-width">
-    <!-- <h2>Опыт работы</h2> -->
     <p class="loud">Опыт работы</p>
-    <h6 class="">Дизайнер <a href="https://vmeste.ru" target="_blank">в Студии Артемия Лебедева</a> ⋅ 2024–2025</h6>
-    <p class="cv">Организовал работу команды по спринтам. Наладил процессы между дизайном, разработкой, тестированием и
-      продактами.</p>
-    <p class="cv">Проекты: <a href="https://vmeste.ru/" target="_blank">Вместе.ру</a>, <a
-        href="https://vmeste.ru/business" target="_blank">ЛК Бизнеса</a>, <a href="https://vmeste.ru/uorg"
-        target="_blank">CRM для УК</a></p>
-  </div>
 
-  <div class="cv-container">
-    <!--    <div class="cv-year">
-      <h3 class="cv">2024–2025</h3>
-    </div> -->
+    <h3>Студия Артемия Лебедева ⋅ 2024–2025</h3>
+    <p class="aside cv">Разрабатывал и тестировал навигацию, автоматизировал верстку сотен макетов с разным наполнением,
+      верстал
+      руководства и презентации, рисовал навигационные схемы, проектировал одресные таблички, участвововал в оформлении
+      внутристудийных мероприятий.</p>
+    <p class="aside">Опубликованные проекты: 
+      <a class="cv" href="https://vmeste.ru/" target="_blank">Навигация в главном офисе Промсвязьбанка</a>, 
+      <a href="https://vmeste.ru/business" target="_blank">ценники «Пятёрочки»</a>,
+      <a href="https://vmeste.ru/uorg" target="_blank">футбол</a>,
+      <a href="https://vmeste.ru/uorg" target="_blank">ГТЛК</a>,
+      <a href="https://vmeste.ru/uorg" target="_blank">др 29</a>,
+      <a href="https://vmeste.ru/uorg" target="_blank">День родителей</a>,
+    </p>
 
-    <div class="cv-content">
-    </div>
-  </div>
 
-  <div class="ids__space M"></div>
-  <div class="cv-container">
-    <!--     <div class="cv-year">
-      <h3 class="cv">2022–2024</h3>
-    </div> -->
-
-    <div class="cv-content">
-      <h6 class="">Технический дизайнер <a href="https://vmeste.ru" target="_blank">в
-          ЦТР Удмуртии</a> ⋅ 2022–2024
-      </h6>
-      <p class="cv">Создал систему транспортной навигации для всего городского транспорта.</p>
-      <p class="cv">Проекты: <a href="https://t.me/izhevsk_transport_bot" target="_blank">Система транспортной
-          навигации</a>, <a href="https://t.me/izhevsk_transport_bot" target="_blank">Схема движения автобусов</a>, <a
-          href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a></p>
-    </div>
+    <div class="ids__space M"></div>
+    <!-- <div class="cv-container"> -->
+    <!-- <div class="cv-content"> -->
+    <h3 class="">ЦТР УР ⋅ 2022–2024
+    </h3>
+    <p class="aside cv">Создал систему навигации для городского транспорта Ижевска и спроектировал схему автобусов,
+      ижевска.
+    </p>
+    <p class="aside">Проекты: <a href="https://t.me/izhevsk_transport_bot" target="_blank">Система транспортной
+        навигации</a>, <a href="https://t.me/izhevsk_transport_bot" target="_blank">Схема движения автобусов</a>, <a
+        href="https://t.me/izhevsk_transport_bot" target="_blank">Генератор адресных табличек</a></p>
+    <!-- </div> -->
+    <!-- </div> -->
   </div>
 
   <div class="ids__space XL"></div>
@@ -370,35 +368,43 @@
 
 
   <!-- <aside> -->
-  <div style="display: flex; flex-direction: row; gap: 1em;">
-    <div style="width: 50%;">
+
+  <div
+    style="display: column; columns: 2; flex-direction: row; gap: 1em; @media (width < 767px) { flex-direction: column; /* gap: 5em;  */}">
+
+    <div style="width: 50%; /* display: flex; flex-direction: row; gap: 1em;  */">
+      <!-- <div class="" style="/* width: 0; */"> -->
       <h3>Дизайн</h3>
-      <p class="">Информационный дизайн, навигация, архитектура, дизайн-коды, адресные таблички, навигация, оформление
-        фасадов, ретушь фасадов, вывески, адресные таблички, верстка документации.</p>
-    </div>
-    <div style="width: 50%;">
+      <p class="aside">Инфографика, сайты, интерфейсы, навигация, дизайн-коды, гайдлайны,
+        техдизайн:
+        верстка, ретушь, автоматизация.</p>
+      <!-- </div> -->
+      <!-- <div class="" style="/* width: 40%; */"> -->
       <h3>Инструменты</h3>
-      <p class="">Photoshop, Illustrator, Figma, Sketch, InDesign, Premiere Pro, After Effects, Blender, Unity, Unreal
-        Engine, Blender, Unity, Unreal Engine</p>
-    </div>
-  </div>
-
-  <div class="ids__space M"></div>
-  <div style="display: flex; flex-direction: row; gap: 1em;">
-    <div style="width: 50%;">
-      <h3>Разработка</h3>
-      <p class="">HTML, CSS, JavaScript, jQuery, React, Vue.js, Node.js
+      <p class="aside">Фигма, VS Code, нейросети, иллюстратор, индизайн, фотошоп, Glyphs<!-- , Тильда, Рэдимэг -->
       </p>
+      <!-- </div> -->
     </div>
 
 
-    <div style="width: 50%;">
-      <div class="cv-content">
-        <h3>Язык</h3>
-        <p class="">Русский, английский</p>
-      </div>
+    <div style="width: 50%; /* display: flex; flex-direction: row; gap: 1em; */">
+      <!-- <div class="" style="/* width: 40%; */"> -->
+      <h3>Разработка</h3>
+      <p class="aside">HTML, CSS, JavaScript, Git, 11ty, jsPDF, jQuery, PHP, MySQL
+      </p>
+      <!-- </div> -->
+
+
+      <!-- <div class="" style="/* width: 40%; */"> -->
+      <!-- <div class=""> -->
+      <h3>Язык</h3>
+      <p class="aside">Русский родной, по-английски свободно читаю и пишу</p>
+      <!-- </div> -->
+      <!-- </div> -->
     </div>
+
   </div>
+
   <!-- </aside> -->
 </div>
 
@@ -444,15 +450,15 @@
 
 
 
-  <script src="script.js" defer></script>
-  <script src="js/grid.js" defer></script>
-  <script src="js/promo-block.js"></script>
-  <script src="js/sleepy.js"></script>
-  <script src="js/footnotes.js"></script>
+  <!-- <script src="script.js" defer></script> -->
+  <!-- <script src="js/grid.js" defer></script> -->
+  <!-- <script src="js/promo-block.js"></script> -->
+  <!-- <script src="js/sleepy.js"></script> -->
+  <!-- <script src="js/footnotes.js"></script> -->
 
-  <script src="js/lib/photoswipe.umd.min.js"></script>
-  <script src="js/lib/photoswipe-lightbox.umd.min.js"></script>
-  <script src="js/gallery.js"></script>
+  <!-- <script src="js/lib/photoswipe.umd.min.js"></script> -->
+  <!-- <script src="js/lib/photoswipe-lightbox.umd.min.js"></script> -->
+  <!-- <script src="js/gallery.js"></script> -->
 </body>
 
 </html>

@@ -20,6 +20,8 @@ body {
   font-family: "VelaSans";
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 /* Density and radius */

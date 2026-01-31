@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Генератор адресных табличек Ижевска</title>
+
+  <!-- <meta property="og:image" content="src/assets/images/social.jpg"> -->
+  <meta property="og:description" content="Описание генератора">
+  <!-- <meta property="og:url" content="https://dmivaleriy.github.io/works/projects/izh-plates-generator"> -->
+  <title>Генератор адресных табличек Ижевска</title>
+  <meta name="description" content="Описание генератора">
+
+  <!-- <link rel="icon" href="../../assets/images/favicon.png" type="image/x-icon"> -->
+  <!-- <link rel="shortcut icon" href="../../assets/images/favicon.png" type="image/x-icon"> -->
+  <!-- <link rel="apple-touch-icon" href="../../assets/images/favicon.png"> -->
+
+  <link rel="stylesheet" type="text/css"
+    href="../../projects/izh-plates-generator/css/style.css">
+  <!-- <link rel="stylesheet" type="text/css" href="../../css/layout.css"> -->
+</head>
+
+<body>
+
+  <!-- <div class="ids__wrapper"> -->
+  <div class="gap M"></div>
+  <div class="centered">
+    <!-- <h1>Генератор адресных табличек Ижевска</h1> -->
+  </div>
+  <div class="gap M"></div>
+
+  <!-- <p>Макет формируется автоматически при заполнении формы:</p> -->
+  <div class="centered button-group">
+    <!-- <h2>Тип дома</h2> -->
+    <a class="plate-type" id="buildings">Многоквартирный дом</a>
+    <a class="plate-type" id="izhs">Частный дом</a>
+    <a class="plate-type" id="okn">Объект культурного наследия</a>
+  </div>
+  <div class="gap L"></div>
+
+
+  <div class="centered preview">
+    <div id="preview-group-name-number" class="preview__group">
+      <div class="preview__item">
+        <span class="preview__img-wrap sign-preview">
+          <img class="preview__img sign-preview" id="name-preview" alt="" src="">
+        </span>
+        <p id="name-dimensions" class="preview__dimensions"></p>
+      </div>
+      <div class="preview__item">
+        <span class="preview__img-wrap sign-preview">
+          <img class="preview__img sign-preview" id="number-preview" alt="" src="">
+        </span>
+        <p id="number-dimensions" class="preview__dimensions"></p>
+      </div>
+    </div>
+
+    <div id="preview-group-izhs" class="preview__group">
+      <div class="preview__item">
+        <span class="preview__img-wrap izhs-preview">
+          <img class="preview__img izhs-preview" id="izhs-preview" alt="" src="">
+        </span>
+        <p id="izhs-dimensions" class="preview__dimensions"></p>
+      </div>
+      <div class="preview__item">
+        <span class="preview__img-wrap izhs-preview">
+          <img class="preview__img izhs-preview" id="izhs-number-preview" alt="" src="">
+        </span>
+        <p id="izhs-number-dimensions" class="preview__dimensions"></p>
+      </div>
+    </div>
+
+    <div id="preview-group-okn" class="preview__group">
+      <div class="preview__item">
+        <span class="preview__img-wrap okn-preview">
+          <img class="preview__img okn-preview" id="okn-preview" alt="" src="">
+        </span>
+        <p id="okn-dimensions" class="preview__dimensions"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="centered input-group">
+    <!-- <div class="input-group"> -->
+    <div class="input-group__item">
+      <p>Название</p>
+      <input id="streetName" type="text" placeholder="" spellcheck="false" value="Вадима Сивкова">
+      <div id="street-name-warning">
+        <p id="street-name-warning-message">Опечатка: такой улицы нет</p>
+      </div>
+      <div id="okn-input-error">
+        <p id="okn-input-error-message">По этому адресу нет объектов культурного наследия. Этот вид табличек можно
+          использовать только для объектов из списка Памятников истории и культуры</p>
+      </div>
+    </div>
+    <div class="input-group__item">
+      <p>Номер дома</p>
+      <input id="houseNumber" type="text" placeholder="" spellcheck="false" value="18">
+      <div id="number-input-error">
+        <p id="number-input-error-message">Номер дома не может быть пустым, начинаться с нуля, содержать буквы или
+          спецсимволы</p>
+      </div>
+    </div>
+    <div class="input-group__item">
+      <p>Литера</p>
+      <input id="houseLetter" type="text" placeholder="" spellcheck="false" value="">
+      <div id="letter-input-error">
+        <p id="letter-input-error-message">Литера не может начинаться с цифры, содержать латинские буквы и быть
+          длиннее
+          3 символов</p>
+      </div>
+    </div>
+    <!-- </div> -->
+
+
+  </div>
+
+  <!-- </div> -->
+
+  <!-- Скрытые инпуты -->
+  <div class="hidden-fields">
+    <input id="streetType" type="text" onInput="this.parentNode.dataset.value = this.value" placeholder=""
+      spellcheck="false" value="">
+    <input id="streetNameUdm" type="text" onInput="this.parentNode.dataset.value = this.value" placeholder="Удмурт"
+      spellcheck="false" value="">
+    <input id="streetTypeUdm" type="text" onInput="this.parentNode.dataset.value = this.value" placeholder="Удмурт"
+      spellcheck="false" value="">
+  </div>
+
+  <!-- <div class="gap L"></div> -->
+  <div class="centered">
+    <h2>Скачать макет в ПДФ</h2>
+  </div>
+  <div class="centered button-group">
+    <div class="button-group">
+      <button id="downloadNamePDF">Название</button>
+      <button id="downloadNumberPDF">Номер</button>
+      <button id="downloadIzhsPDF">Название и номер</button>
+      <button id="downloadIzhsNumberPDF">Только номер</button>
+      <button id="downloadOknPDF">Табличка для ОКН</button>
+    </div>
+  </div>
+  <div class="gap L"></div>
+  <div class="gap L"></div>
+  <div class="gap L"></div>
+  <div class="gap L"></div>
+  <div class="gap L"></div>
+  <div class="gap L"></div>
+  <div class="gap L"></div>
+  <div class="gap L"></div>
+
+  <script type="text/javascript"
+    src="../../projects/izh-plates-generator/js/jspdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <!--  <script>
+    if (typeof pdfjsLib !== 'undefined') {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+  </script> -->
+  <script type="text/javascript"
+    src="../../projects/izh-plates-generator/js/pdf.worker.min.js"></script>
+  <script type="text/javascript"
+    src="../../projects/izh-plates-generator/js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript"
+    src="../../projects/izh-plates-generator/js/easy-autocomplete.js"></script>
+  <script type="text/javascript"
+    src="../../projects/izh-plates-generator/js/fonts.js"></script>
+  <script type="text/javascript"
+    src="../../projects/izh-plates-generator/js/street-sign.js"></script>
+  <script type="text/javascript"
+    src="../../projects/izh-plates-generator/js/jquery.js"></script>
+</body>
+
+
+</html>
