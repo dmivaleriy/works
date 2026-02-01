@@ -20,7 +20,7 @@ let previewScale = .5
 
 // Плейсхолдеры превью при загрузке (пока не сформированы реальные). Замените на свои PNG при необходимости.
 var defaultNamePreviewSrc = 'img/default-name-preview.png';
-var defaultNumberPreviewSrc = 'img/default-number-preview.gif';
+var defaultNumberPreviewSrc = 'img/default-number-preview.png';
 // Видимый плейсхолдер для всех браузеров, в т.ч. Safari (SVG в data URL)
 var defaultPlaceholderFallback = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
 	'<svg xmlns="http://www.w3.org/2000/svg" width="320" height="120" viewBox="0 0 320 120">' +
@@ -124,7 +124,7 @@ function isStreetHeroStreet(streetType, streetName) {
 // Номер дома: только цифры 1–9, макс. 3 (для generatePreviewOnly)
 var houseNumberRegex = /^[1-9]\d{0,2}$/;
 // Литера: не с цифры, только кириллица и цифры 1–9, макс. 3 символа
-var houseLetterRegex = /^[А-Яа-яЁё][А-Яа-яЁё1-9]{0,2}$/;
+var houseLetterRegex = /^[А-Яа-яЁё1-9][А-Яа-яЁё1-9]{0,2}$/;
 // Текущая вкладка превью: 'buildings' | 'izhs' | 'okn'
 var currentPreviewTab = 'buildings';
 // Есть ли хотя бы одна подсказка для введённого текста (как в autocomplete: название начинается с phrase)
@@ -210,8 +210,8 @@ $(document).ready(function () {
 	// Видимость блоков превью и состояние кнопок "Тип дома"
 	var previewTabConfig = {
 		'buildings': { groupId: 'preview-group-name-number', buttonId: 'buildings', letterActive: true, showButtons: ['downloadNamePDF', 'downloadNumberPDF'], hideButtons: ['downloadIzhsPDF', 'downloadIzhsNumberPDF', 'downloadOknPDF'] },
-		'izhs': { groupId: 'preview-group-izhs', buttonId: 'izhs', letterActive: false, showButtons: ['downloadIzhsPDF', 'downloadIzhsNumberPDF'], hideButtons: ['downloadNamePDF', 'downloadNumberPDF', 'downloadOknPDF'] },
-		'okn': { groupId: 'preview-group-okn', buttonId: 'okn', letterActive: false, showButtons: ['downloadOknPDF'], hideButtons: ['downloadNamePDF', 'downloadNumberPDF', 'downloadIzhsPDF', 'downloadIzhsNumberPDF'] }
+		'izhs': { groupId: 'preview-group-izhs', buttonId: 'izhs', letterActive: true, showButtons: ['downloadIzhsPDF', 'downloadIzhsNumberPDF'], hideButtons: ['downloadNamePDF', 'downloadNumberPDF', 'downloadOknPDF'] },
+		'okn': { groupId: 'preview-group-okn', buttonId: 'okn', letterActive: true, showButtons: ['downloadOknPDF'], hideButtons: ['downloadNamePDF', 'downloadNumberPDF', 'downloadIzhsPDF', 'downloadIzhsNumberPDF'] }
 	};
 
 	function switchPreviewTab(tab) {
@@ -272,13 +272,34 @@ $(document).ready(function () {
 		}
 	});
 	$("#downloadIzhsPDF").click(function () {
-		createIzhsPDF(true);
+		var letter = ($('#houseLetter').val() || '').trim();
+		if (letter !== '' && houseLetterRegex.test(letter)) {
+			var streetType = $('#streetType').val();
+			var streetName = $('#streetName').val();
+			if (isStreetHeroStreet(streetType, streetName)) {
+				createIzhsTitleWithLetterPDF(true);
+			} else {
+				createIzhsWithLetterPDF(true);
+			}
+		} else {
+			createIzhsPDF(true);
+		}
 	});
 	$("#downloadIzhsNumberPDF").click(function () {
-		createIzhsNumberPDF(true);
+		var letter = ($('#houseLetter').val() || '').trim();
+		if (letter !== '' && houseLetterRegex.test(letter)) {
+			createIzhsNumberWithLetterPDF(true);
+		} else {
+			createIzhsNumberPDF(true);
+		}
 	});
 	$("#downloadOknPDF").click(function () {
-		createOknPDF(true);
+		var letter = ($('#houseLetter').val() || '').trim();
+		if (letter !== '' && houseLetterRegex.test(letter)) {
+			createOknWithLetterPDF(true);
+		} else {
+			createOknPDF(true);
+		}
 	});
 
 	// Debounce function to limit preview updates while typing
@@ -312,6 +333,7 @@ $(document).ready(function () {
 	});
 	$('#streetName').on('blur', updateStreetNameWarning);
 	$('#houseNumber').on('input', debouncedPreviewUpdate);
+	$('#houseLetter').on('input', debouncedPreviewUpdate);
 
 	// House number validation (houseNumberRegex — глобально)
 	function validateHouseNumber() {
@@ -1539,6 +1561,325 @@ function createIzhsPDF(savePDF) {
 	}
 }
 
+// !! Табличка для ИЖС с названием, номером и литерой, 200 мм
+function createIzhsWithLetterPDF(savePDF) {
+	// Получение значений из формы
+	var streetType = $('#streetType').val();
+	var streetName = $('#streetName').val();
+	var streetNameUdm = $('#streetNameUdm').val();
+	var streetTypeUdm = $('#streetTypeUdm').val();
+	var houseNumber = $('#houseNumber').val();
+
+	spaceValue = 23
+
+	if (!isStreetNameValid(streetName)) {
+		return;
+	}
+
+	// Объявление переменных
+	// let i, word;
+
+	// Объявление массива с текстом
+	var words = [
+		{
+			// Родовое слово на русском языке
+			'contents': streetType,
+			'fontSize': 105,
+			'fontTracking': 10,
+			'align': 'left',
+			'position': {
+				'x': signIndent,
+				'y': 76.556,
+			},
+			'font': 'IZH-260-T',
+			'fontStyle': 'normal',
+			'color': Object.assign({}, backColor.color), // Копируем объект цвета
+			'rightShift': false,
+		},
+		{
+			// Название улицы на русском языке
+			'contents': streetName,
+			'fontSize': 170,
+			'fontTracking': 20,
+			'align': 'left',
+			'position': {
+				'x': 0,
+				'y': 79.967,
+			},
+			'font': 'IZH-260-A',
+			'fontStyle': 'normal',
+			'color': Object.assign({}, backColor.color), // Копируем объект цвета
+			'rightShift': true,
+		},
+		{
+			// Название улицы на удмуртском языке
+			'contents': streetNameUdm,
+			'fontSize': 170,
+			'fontTracking': 20,
+			'align': 'left',
+			'position': {
+				'x': signIndent,
+				'y': 179.981,
+			},
+			'font': 'IZH-260-A',
+			'fontStyle': 'normal',
+			'color': Object.assign({}, fillColor.color), // Копируем объект цвета
+			'rightShift': false,
+		},
+		{
+			// Родовое слово на удмуртском языке
+			'contents': streetTypeUdm,
+			'fontSize': 105,
+			'fontTracking': 10,
+			'align': 'left',
+			'position': {
+				'x': 0,
+				'y': 176.556,
+			},
+			'font': 'IZH-260-T',
+			'fontStyle': 'normal',
+			'color': Object.assign({}, fillColor.color), // Копируем объект цвета
+			'rightShift': true,
+		},
+		// Номер дома
+		{
+			'contents': houseNumber,
+			'fontSize': 350,
+			'fontTracking': 20,
+			'align': 'center',
+			'position': {
+				'x': 0,
+				'y': 162.069,
+			},
+			'font': 'IZH-260-A',
+			'fontStyle': 'normal',
+			'color': Object.assign({}, backColor.color), // Копируем объект цвета
+			'rightShift': true,
+		}
+	];
+
+	// Рассчет ширины слов
+	var widthTypeRus = measureTextWidth(words[0]);
+	var widthNameRus = measureTextWidth(words[1]);
+	var widthNameUdm = measureTextWidth(words[2]);
+	var widthTypeUdm = measureTextWidth(words[3]);
+	var widthNumber = 140;
+
+	signIndentIzhs = 30;
+	spaceValueIzhs = 23;
+	verticalDividerWidth = 5;
+	// Рассчет ширины таблички
+	var preWidth = Math.max((widthTypeRus + widthNameRus), (widthNameUdm + widthTypeUdm));
+	var width = Math.round(signIndentIzhs * 4 + preWidth + spaceValueIzhs + widthNumber + verticalDividerWidth);
+	// Set sign width
+	signWidth = width;
+
+	var verticalDividerPosition = signWidth - signIndentIzhs * 2 - widthNumber - verticalDividerWidth;
+
+	let doc = new jsPDF({
+		orientation: 'l',
+		unit: 'mm',
+		format: [signWidth, signHeightIzhs],
+		putOnlyUsedFonts: true,
+	});
+
+
+	// Set properties on the document
+	doc.setProperties({
+		title: streetType + ' ' + streetName + ', ' + houseNumber,
+		subject: 'Табличка с названием улицы и номером, для частного дома',
+		author: '',
+		keywords: 'Генератор адресных табличек Ижевска',
+	});
+
+	// Рисование фона
+	// doc.setDrawColor(0);
+	/* 	doc.setFillColor(fillColor.color.c / 100, fillColor.color.m / 100, fillColor.color.y / 100, fillColor.color.k / 100);
+		doc.roundedRect(0, 0, signWidth, signHeightIzhs, signRadius, signRadius, 'F'); */
+
+	// Рисование нижней линии
+	// doc.setDrawColor(0);
+	doc.setFillColor(backColor.color.c / 100, backColor.color.m / 100, backColor.color.y / 100, backColor.color.k / 100);
+	doc.roundedRect(0, signHeightIzhs / 2, signWidth - signIndentIzhs * 2 - widthNumber, signHeightIzhs / 2, signRadius, signRadius, 'F');
+
+	// Рисование разделителя
+	doc.setDrawColor(0);
+	doc.setFillColor(backColor.color.c / 100, backColor.color.m / 100, backColor.color.y / 100, backColor.color.k / 100);
+	doc.roundedRect(verticalDividerPosition, 0, verticalDividerWidth, signHeightIzhs, 0, 0, 'F');
+
+
+
+
+	// Проверка верстки
+
+	// Левый отступ
+	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
+	doc.rect(0, 0, signIndentIzhs, signHeightIzhs, 'F')
+
+	// Правый отступ
+	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
+	doc.rect(signWidth - signIndentIzhs, 0, signIndentIzhs, signHeightIzhs, 'F')
+
+	// Отступ до разделителя
+	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
+	doc.rect(verticalDividerPosition - signIndentIzhs, 0, signIndentIzhs, signHeightIzhs, 'F')
+
+	// Отступ после разделителя
+	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
+	doc.rect(verticalDividerPosition + verticalDividerWidth, 0, signIndentIzhs, signHeightIzhs, 'F')
+
+	// Верхний отступ русского текста
+	doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
+	doc.rect(signIndentIzhs, 0, signWidth - signIndentIzhs * 3 - widthNumber - verticalDividerWidth, 29, 'F')
+
+	//Пробел русского текста
+	doc.setFillColor(checkColor3.color.c / 100, checkColor3.color.m / 100, checkColor3.color.y / 100, checkColor3.color.k / 100);
+	doc.rect(signIndentIzhs + widthTypeRus, 29, spaceValueIzhs, 42, 'F')
+
+	// Нижний отступ русского текста
+	doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
+	doc.rect(signIndentIzhs, 71, signWidth - signIndentIzhs * 3 - widthNumber - verticalDividerWidth, 29, 'F')
+
+	// Верхний отступ удмуртского текста
+	doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
+	doc.rect(signIndentIzhs, 100, signWidth - signIndentIzhs * 3 - widthNumber - verticalDividerWidth, 29, 'F')
+
+	//Пробел удмуртского текста
+	doc.setFillColor(checkColor3.color.c / 100, checkColor3.color.m / 100, checkColor3.color.y / 100, checkColor3.color.k / 100);
+	doc.rect(signIndentIzhs + widthNameUdm, 129, spaceValueIzhs, 42, 'F')
+
+	// Нижний отступ удмуртского текста
+	doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
+	doc.rect(signIndentIzhs, 171, signWidth - signIndentIzhs * 3 - widthNumber - verticalDividerWidth, 29, 'F')
+
+
+	var rightShiftValueRu = widthTypeRus + spaceValueIzhs + signIndentIzhs;
+	var rightShiftValueUdm = widthNameUdm + spaceValueIzhs + signIndentIzhs;
+
+	for (i = 0; i < words.length; i++) {
+
+		// Сдвиг для русского родового слова (0) и удмуртского названия улицы (2)
+		if (i == 0 || i == 2) {
+			word = words[i];
+			words[i].position.x = signIndentIzhs;
+			doc.internal.write('q');
+			doc.setFont(word.font);
+			doc.setFontStyle(word.fontStyle);
+			doc.setFontSize(word.fontSize);
+			doc.setTextColor(
+				cmykVal(word.color.c),
+				cmykVal(word.color.m),
+				cmykVal(word.color.y),
+				cmykVal(word.color.k)
+			);
+
+			doc.text(
+				word.contents,
+				word.position.x,
+				word.position.y,
+				{
+					'baseline': 'bottom',
+					'charSpace': getCharSpace(word.fontSize, word.fontTracking),
+					// 'lineHeightFactor': word.fontLeading / word.fontSize,
+					'align': word.align,
+					'renderingMode': 'addToPathForClipping'
+				});
+			doc.rect(0, 0, signWidth, signHeightIzhs, 'F');
+			doc.internal.write('Q');
+		} else if (i == 1) {
+			// Сдвиг по оси X для русского названия улицы
+			words[i].position.x = rightShiftValueRu - nameWordIndent;
+			word = words[i];
+			doc.internal.write('q');
+			doc.setFont(word.font);
+			doc.setFontStyle(word.fontStyle);
+			doc.setFontSize(word.fontSize);
+			doc.setTextColor(
+				cmykVal(word.color.c),
+				cmykVal(word.color.m),
+				cmykVal(word.color.y),
+				cmykVal(word.color.k)
+			);
+			doc.text(
+				word.contents,
+				word.position.x,
+				word.position.y,
+				{
+					'baseline': 'bottom',
+					'charSpace': getCharSpace(word.fontSize, word.fontTracking),
+					// 'lineHeightFactor': word.fontLeading / word.fontSize,
+					'align': word.align,
+					'renderingMode': 'addToPathForClipping'
+				});
+			doc.rect(0, 0, signWidth, signHeightIzhs, 'F');
+			doc.internal.write('Q');
+		} else if (i == 3) {
+			// Сдвиг по оси X для удмуртского названия улицы
+			words[i].position.x = rightShiftValueUdm - typeWordIndent;
+			word = words[i];
+			doc.internal.write('q');
+			doc.setFont(word.font);
+			doc.setFontStyle(word.fontStyle);
+			doc.setFontSize(word.fontSize);
+			doc.setTextColor(
+				cmykVal(word.color.c),
+				cmykVal(word.color.m),
+				cmykVal(word.color.y),
+				cmykVal(word.color.k)
+			);
+			doc.text(
+				word.contents,
+				word.position.x,
+				word.position.y,
+				{
+					'baseline': 'bottom',
+					'charSpace': getCharSpace(word.fontSize, word.fontTracking),
+					// 'lineHeightFactor': word.fontLeading / word.fontSize,
+					'align': word.align,
+					'renderingMode': 'addToPathForClipping'
+				});
+			doc.rect(0, 0, signWidth, signHeightIzhs, 'F');
+			doc.internal.write('Q');
+		} else {
+			words[i].position.x = verticalDividerPosition + verticalDividerWidth + signIndentIzhs + 68.841;
+			word = words[i];
+			doc.internal.write('q');
+			doc.setFont(word.font);
+			doc.setFontStyle(word.fontStyle);
+			doc.setFontSize(word.fontSize);
+			doc.setTextColor(
+				cmykVal(word.color.c),
+				cmykVal(word.color.m),
+				cmykVal(word.color.y),
+				cmykVal(word.color.k)
+			);
+			doc.text(
+				word.contents,
+				word.position.x,
+				word.position.y,
+				{
+					'baseline': 'bottom',
+					'charSpace': getCharSpace(word.fontSize, word.fontTracking),
+					// 'lineHeightFactor': word.fontLeading / word.fontSize,
+					'align': word.align,
+					'renderingMode': 'addToPathForClipping'
+				});
+			doc.rect(0, 0, signWidth, signHeightIzhs, 'F');
+			doc.internal.write('Q');
+		}
+	}
+
+
+
+	// Generate PNG preview
+	generateIzhsPreview(doc);
+
+	// Save PDF only if savePDF is true
+	if (savePDF) {
+		doc.save(streetType + '_' + streetName + '_' + signWidth + '×' + signHeightIzhs + '.pdf');
+	}
+}
+
 // !! Табличка для ИЖС с названием и номером для длинных титулов, 200 мм
 function createIzhsTitlePDF(savePDF) {
 	// Получение значений из формы
@@ -1858,6 +2199,325 @@ function createIzhsTitlePDF(savePDF) {
 	}
 }
 
+// !! Табличка для ИЖС с названием, номером и литерой для длинных титулов, 200 мм
+function createIzhsTitleWithLetterPDF(savePDF) {
+	// Получение значений из формы
+	var streetType = $('#streetType').val();
+	var streetName = $('#streetName').val();
+	var streetNameUdm = $('#streetNameUdm').val();
+	var streetTypeUdm = $('#streetTypeUdm').val();
+	var houseNumber = $('#houseNumber').val();
+
+	spaceValue = 23
+
+	if (!isStreetNameValid(streetName)) {
+		return;
+	}
+
+	// Объявление переменных
+	// let i, word;
+
+	// Объявление массива с текстом
+	var words = [
+		{
+			// Родовое слово на русском языке
+			'contents': streetType,
+			'fontSize': 105,
+			'fontTracking': 10,
+			'align': 'left',
+			'position': {
+				'x': signIndent,
+				'y': 76.556,
+			},
+			'font': 'IZH-260-T',
+			'fontStyle': 'normal',
+			'color': Object.assign({}, backColor.color), // Копируем объект цвета
+			'rightShift': false,
+		},
+		{
+			// Название улицы на русском языке
+			'contents': streetName,
+			'fontSize': 170,
+			'fontTracking': 20,
+			'align': 'left',
+			'position': {
+				'x': 0,
+				'y': 79.967,
+			},
+			'font': 'IZH-260-A',
+			'fontStyle': 'normal',
+			'color': Object.assign({}, backColor.color), // Копируем объект цвета
+			'rightShift': true,
+		},
+		{
+			// Название улицы на удмуртском языке
+			'contents': streetNameUdm,
+			'fontSize': 170,
+			'fontTracking': 20,
+			'align': 'left',
+			'position': {
+				'x': signIndent,
+				'y': 179.981,
+			},
+			'font': 'IZH-260-A',
+			'fontStyle': 'normal',
+			'color': Object.assign({}, fillColor.color), // Копируем объект цвета
+			'rightShift': false,
+		},
+		{
+			// Родовое слово на удмуртском языке
+			'contents': streetTypeUdm,
+			'fontSize': 105,
+			'fontTracking': 10,
+			'align': 'left',
+			'position': {
+				'x': 0,
+				'y': 176.556,
+			},
+			'font': 'IZH-260-T',
+			'fontStyle': 'normal',
+			'color': Object.assign({}, fillColor.color), // Копируем объект цвета
+			'rightShift': true,
+		},
+		// Номер дома
+		{
+			'contents': houseNumber,
+			'fontSize': 350,
+			'fontTracking': 20,
+			'align': 'center',
+			'position': {
+				'x': 0,
+				'y': 162.069,
+			},
+			'font': 'IZH-260-A',
+			'fontStyle': 'normal',
+			'color': Object.assign({}, backColor.color), // Копируем объект цвета
+			'rightShift': true,
+		}
+	];
+
+	// Рассчет ширины слов
+	var widthTypeRus = measureTextWidth(words[0]);
+	var widthNameRus = measureTextWidth(words[1]);
+	var widthNameUdm = measureTextWidth(words[2]);
+	var widthTypeUdm = measureTextWidth(words[3]);
+	var widthNumber = 140;
+
+	signIndentIzhs = 30;
+	spaceValueIzhs = 23;
+	verticalDividerWidth = 5;
+	// Рассчет ширины таблички
+	var preWidth = Math.max((widthTypeRus + widthNameRus), (widthNameUdm + widthTypeUdm));
+	var width = Math.round(signIndentIzhs * 4 + preWidth + spaceValueIzhs + widthNumber + verticalDividerWidth);
+	// Set sign width
+	signWidth = width;
+
+	var verticalDividerPosition = signWidth - signIndentIzhs * 2 - widthNumber - verticalDividerWidth;
+
+	let doc = new jsPDF({
+		orientation: 'l',
+		unit: 'mm',
+		format: [signWidth, signHeightIzhs],
+		putOnlyUsedFonts: true,
+	});
+
+
+	// Set properties on the document
+	doc.setProperties({
+		title: streetType + ' ' + streetName + ', ' + houseNumber,
+		subject: 'Табличка с названием улицы и номером, для частного дома',
+		author: '',
+		keywords: 'Генератор адресных табличек Ижевска',
+	});
+
+	// Рисование фона
+	// doc.setDrawColor(0);
+	/* 	doc.setFillColor(fillColor.color.c / 100, fillColor.color.m / 100, fillColor.color.y / 100, fillColor.color.k / 100);
+		doc.roundedRect(0, 0, signWidth, signHeightIzhs, signRadius, signRadius, 'F'); */
+
+	// Рисование нижней линии
+	// doc.setDrawColor(0);
+	doc.setFillColor(backColor.color.c / 100, backColor.color.m / 100, backColor.color.y / 100, backColor.color.k / 100);
+	doc.roundedRect(0, signHeightIzhs / 2, signWidth - signIndentIzhs * 2 - widthNumber, signHeightIzhs / 2, signRadius, signRadius, 'F');
+
+	// Рисование разделителя
+	doc.setDrawColor(0);
+	doc.setFillColor(backColor.color.c / 100, backColor.color.m / 100, backColor.color.y / 100, backColor.color.k / 100);
+	doc.roundedRect(verticalDividerPosition, 0, verticalDividerWidth, signHeightIzhs, 0, 0, 'F');
+
+
+
+
+	// Проверка верстки
+
+	// Левый отступ
+	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
+	doc.rect(0, 0, signIndentIzhs, signHeightIzhs, 'F')
+
+	// Правый отступ
+	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
+	doc.rect(signWidth - signIndentIzhs, 0, signIndentIzhs, signHeightIzhs, 'F')
+
+	// Отступ до разделителя
+	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
+	doc.rect(verticalDividerPosition - signIndentIzhs, 0, signIndentIzhs, signHeightIzhs, 'F')
+
+	// Отступ после разделителя
+	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
+	doc.rect(verticalDividerPosition + verticalDividerWidth, 0, signIndentIzhs, signHeightIzhs, 'F')
+
+	// Верхний отступ русского текста
+	doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
+	doc.rect(signIndentIzhs, 0, signWidth - signIndentIzhs * 3 - widthNumber - verticalDividerWidth, 29, 'F')
+
+	//Пробел русского текста
+	doc.setFillColor(checkColor3.color.c / 100, checkColor3.color.m / 100, checkColor3.color.y / 100, checkColor3.color.k / 100);
+	doc.rect(signIndentIzhs + widthTypeRus, 29, spaceValueIzhs, 42, 'F')
+
+	// Нижний отступ русского текста
+	doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
+	doc.rect(signIndentIzhs, 71, signWidth - signIndentIzhs * 3 - widthNumber - verticalDividerWidth, 29, 'F')
+
+	// Верхний отступ удмуртского текста
+	doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
+	doc.rect(signIndentIzhs, 100, signWidth - signIndentIzhs * 3 - widthNumber - verticalDividerWidth, 29, 'F')
+
+	//Пробел удмуртского текста
+	doc.setFillColor(checkColor3.color.c / 100, checkColor3.color.m / 100, checkColor3.color.y / 100, checkColor3.color.k / 100);
+	doc.rect(signIndentIzhs + widthNameUdm, 129, spaceValueIzhs, 42, 'F')
+
+	// Нижний отступ удмуртского текста
+	doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
+	doc.rect(signIndentIzhs, 171, signWidth - signIndentIzhs * 3 - widthNumber - verticalDividerWidth, 29, 'F')
+
+
+	var rightShiftValueRu = widthTypeRus + spaceValueIzhs + signIndentIzhs;
+	var rightShiftValueUdm = widthNameUdm + spaceValueIzhs + signIndentIzhs;
+
+	for (i = 0; i < words.length; i++) {
+
+		// Сдвиг для русского родового слова (0) и удмуртского названия улицы (2)
+		if (i == 0 || i == 2) {
+			word = words[i];
+			words[i].position.x = signIndentIzhs;
+			doc.internal.write('q');
+			doc.setFont(word.font);
+			doc.setFontStyle(word.fontStyle);
+			doc.setFontSize(word.fontSize);
+			doc.setTextColor(
+				cmykVal(word.color.c),
+				cmykVal(word.color.m),
+				cmykVal(word.color.y),
+				cmykVal(word.color.k)
+			);
+
+			doc.text(
+				word.contents,
+				word.position.x,
+				word.position.y,
+				{
+					'baseline': 'bottom',
+					'charSpace': getCharSpace(word.fontSize, word.fontTracking),
+					// 'lineHeightFactor': word.fontLeading / word.fontSize,
+					'align': word.align,
+					'renderingMode': 'addToPathForClipping'
+				});
+			doc.rect(0, 0, signWidth, signHeightIzhs, 'F');
+			doc.internal.write('Q');
+		} else if (i == 1) {
+			// Сдвиг по оси X для русского названия улицы
+			words[i].position.x = rightShiftValueRu - nameWordIndent;
+			word = words[i];
+			doc.internal.write('q');
+			doc.setFont(word.font);
+			doc.setFontStyle(word.fontStyle);
+			doc.setFontSize(word.fontSize);
+			doc.setTextColor(
+				cmykVal(word.color.c),
+				cmykVal(word.color.m),
+				cmykVal(word.color.y),
+				cmykVal(word.color.k)
+			);
+			doc.text(
+				word.contents,
+				word.position.x,
+				word.position.y,
+				{
+					'baseline': 'bottom',
+					'charSpace': getCharSpace(word.fontSize, word.fontTracking),
+					// 'lineHeightFactor': word.fontLeading / word.fontSize,
+					'align': word.align,
+					'renderingMode': 'addToPathForClipping'
+				});
+			doc.rect(0, 0, signWidth, signHeightIzhs, 'F');
+			doc.internal.write('Q');
+		} else if (i == 3) {
+			// Сдвиг по оси X для удмуртского названия улицы
+			words[i].position.x = rightShiftValueUdm - typeWordIndent;
+			word = words[i];
+			doc.internal.write('q');
+			doc.setFont(word.font);
+			doc.setFontStyle(word.fontStyle);
+			doc.setFontSize(word.fontSize);
+			doc.setTextColor(
+				cmykVal(word.color.c),
+				cmykVal(word.color.m),
+				cmykVal(word.color.y),
+				cmykVal(word.color.k)
+			);
+			doc.text(
+				word.contents,
+				word.position.x,
+				word.position.y,
+				{
+					'baseline': 'bottom',
+					'charSpace': getCharSpace(word.fontSize, word.fontTracking),
+					// 'lineHeightFactor': word.fontLeading / word.fontSize,
+					'align': word.align,
+					'renderingMode': 'addToPathForClipping'
+				});
+			doc.rect(0, 0, signWidth, signHeightIzhs, 'F');
+			doc.internal.write('Q');
+		} else {
+			words[i].position.x = verticalDividerPosition + verticalDividerWidth + signIndentIzhs + 68.841;
+			word = words[i];
+			doc.internal.write('q');
+			doc.setFont(word.font);
+			doc.setFontStyle(word.fontStyle);
+			doc.setFontSize(word.fontSize);
+			doc.setTextColor(
+				cmykVal(word.color.c),
+				cmykVal(word.color.m),
+				cmykVal(word.color.y),
+				cmykVal(word.color.k)
+			);
+			doc.text(
+				word.contents,
+				word.position.x,
+				word.position.y,
+				{
+					'baseline': 'bottom',
+					'charSpace': getCharSpace(word.fontSize, word.fontTracking),
+					// 'lineHeightFactor': word.fontLeading / word.fontSize,
+					'align': word.align,
+					'renderingMode': 'addToPathForClipping'
+				});
+			doc.rect(0, 0, signWidth, signHeightIzhs, 'F');
+			doc.internal.write('Q');
+		}
+	}
+
+
+
+	// Generate PNG preview
+	generateIzhsPreview(doc);
+
+	// Save PDF only if savePDF is true
+	if (savePDF) {
+		doc.save(streetType + '_' + streetName + '_' + signWidth + '×' + signHeightIzhs + '.pdf');
+	}
+}
+
 // Табличка для ИЖС с номером, 200 мм
 function createIzhsNumberPDF(savePDF) {
 	var houseNumber = $('#houseNumber').val();
@@ -1901,6 +2561,61 @@ function createIzhsNumberPDF(savePDF) {
 		doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
 		doc.rect(30, 0, signWidth - 60, 56.5, 'F');
 		doc.rect(30, signHeight - 56.5, signWidth - 60, 56.5, 'F'); */
+
+
+	// Draw text
+	drawWord(doc, words[0]);
+
+	generateIzhsNumberPreview(doc);
+
+	if (savePDF) {
+		doc.save(houseNumber + '_' + signWidth + '×' + signHeightIzhs + '.pdf');
+	}
+}
+
+// !! Табличка для ИЖС с номером и литерой, 200 мм
+function createIzhsNumberWithLetterPDF(savePDF) {
+	var houseNumber = $('#houseNumber').val();
+	var words = [{
+		'contents': houseNumber,
+		'fontSize': 352.1,
+		'fontTracking': 20,
+		'align': 'left',
+		'position': { 'x': 0, 'y': 162.111 },
+		'font': 'IZH-260-A',
+		'fontStyle': 'normal',
+		'color': Object.assign({}, backColor.color),
+		'rightShift': false,
+	}];
+
+	var widthNumber = measureTextWidth(words[0]);
+	// signHeight = signHeightIzhs;
+	signWidth = signHeightIzhs;
+	words[0].position.x = (signWidth - widthNumber) / 2;
+
+	var doc = new jsPDF({
+		orientation: 'l',
+		unit: 'mm',
+		format: [signWidth, signHeightIzhs],
+		putOnlyUsedFonts: true,
+	});
+
+	doc.setProperties({
+		title: houseNumber,
+		subject: 'Табличка с номером, для частного дома',
+		author: '',
+		keywords: 'Генератор адресных табличек Ижевска',
+	});
+
+	// Проверка верстки
+	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
+
+	doc.rect(0, 0, 30, signHeight, 'F');
+	doc.rect(signWidth - 30, 0, 30, signHeight, 'F');
+
+	doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
+	doc.rect(30, 0, signWidth - 60, 56.5, 'F');
+	doc.rect(30, signHeight - 56.5, signWidth - 60, 56.5, 'F');
 
 
 	// Draw text
@@ -2219,6 +2934,275 @@ function createOknPDF(savePDF) {	// Получение значений из ф�
 	}
 }
 
+// !! Табличка для ОКН с литерой, 400x600 мм
+function createOknWithLetterPDF(savePDF) {	// Получение значений из формы
+	var streetType = $('#streetType').val();
+	var streetName = $('#streetName').val();
+	var streetNameUdm = $('#streetNameUdm').val();
+	var streetTypeUdm = $('#streetTypeUdm').val();
+	var houseNumber = $('#houseNumber').val();
+
+	var oknErrEl = document.getElementById('okn-input-error');
+	if (oknErrEl) oknErrEl.classList.remove('visible');
+
+	if (!isStreetNameValid(streetName)) {
+		return;
+	}
+	if (!isStreetOkn(streetType, streetName)) {
+		if (oknErrEl) oknErrEl.classList.add('visible');
+		return;
+	}
+
+	// Объявление переменных
+	// let i, word;
+
+	// Объявление массива с текстом
+	var words = [
+		{
+			// Родовое слово на русском языке
+			'contents': streetType,
+			'fontSize': 85,
+			'fontTracking': 0,
+			'align': 'center',
+			'position': {
+				'x': signIndent,
+				'y': 339.502,
+			},
+			'font': 'IZH-260-T',
+			'fontStyle': 'normal',
+			'color': Object.assign({}, backColor.color), // Копируем объект цвета
+			'rightShift': false,
+		},
+		{
+			// Название улицы на русском языке
+			'contents': streetName,
+			'fontSize': 121.49,
+			'fontTracking': 20,
+			'align': 'center',
+			'position': {
+				'x': 0,
+				'y': 396.428,
+			},
+			'font': 'IZH-260-A',
+			'fontStyle': 'normal',
+			'color': Object.assign({}, backColor.color), // Копируем объект цвета
+			'rightShift': true,
+		},
+		{
+			// Название улицы на удмуртском языке
+			'contents': streetNameUdm,
+			'fontSize': 121.49,
+			'fontTracking': 20,
+			'align': 'center',
+			'position': {
+				'x': signIndent,
+				'y': 516.448,
+			},
+			'font': 'IZH-260-A',
+			'fontStyle': 'normal',
+			'color': Object.assign({}, fillColor.color), // Копируем объект цвета
+			'rightShift': false,
+		},
+		{
+			// Родовое слово на удмуртском языке
+			'contents': streetTypeUdm,
+			'fontSize': 85,
+			'fontTracking': 0,
+			'align': 'center',
+			'position': {
+				'x': 0,
+				'y': 554.498,
+			},
+			'font': 'IZH-260-T',
+			'fontStyle': 'normal',
+			'color': Object.assign({}, fillColor.color), // Копируем объект цвета
+			'rightShift': true,
+		},
+		// Номер дома
+		{
+			'contents': houseNumber,
+			'fontSize': 850,
+			'fontTracking': 10,
+			'align': 'center',
+			'position': {
+				'x': 0,
+				'y': 323.979,
+			},
+			'font': 'IZH-260-A',
+			'fontStyle': 'normal',
+			'color': Object.assign({}, backColor.color), // Копируем объект цвета
+			'rightShift': true,
+		}
+	];
+
+	// Рассчет ширины слов
+	/* 	var widthTypeRus = measureTextWidth(words[0]);
+		var widthNameRus = measureTextWidth(words[1]);
+		var widthNameUdm = measureTextWidth(words[2]);
+		var widthTypeUdm = measureTextWidth(words[3]);
+		var widthNumber = measureTextWidth(words[4]); */
+
+	let doc = new jsPDF({
+		orientation: 'p',
+		unit: 'mm',
+		format: [signWidthOkn, signHeightOkn],
+		putOnlyUsedFonts: true,
+	});
+
+
+	// Set properties on the document
+	doc.setProperties({
+		title: streetType + ' ' + streetName + ', ' + houseNumber,
+		subject: 'Табличка с названием улицы и номером, для объектов культрного наследия',
+		author: '',
+		keywords: 'Генератор адресных табличек Ижевска',
+	});
+
+	// Рисование фона
+	// doc.setDrawColor(0);
+	/* 	doc.setFillColor(fillColor.color.c / 100, fillColor.color.m / 100, fillColor.color.y / 100, fillColor.color.k / 100);
+		doc.roundedRect(0, 0, signWidth, signHeightIzhs, signRadius, signRadius, 'F'); */
+
+	// Рисование нижней линии
+	// doc.setDrawColor(0);
+	doc.setFillColor(backColor.color.c / 100, backColor.color.m / 100, backColor.color.y / 100, backColor.color.k / 100);
+	doc.roundedRect(0, signHeightOkn - 170, signWidthOkn, 170, signRadius, signRadius, 'F');
+
+	// Проверка верстки
+
+	// Левый отступ
+	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
+	doc.rect(0, 0, 300, 120, 'F')
+
+
+
+
+	var xCenter = 197.936;
+
+	for (i = 0; i < words.length; i++) {
+
+		// Сдвиг для русского родового слова (0) и удмуртского названия улицы (2)
+		if (i == 0 || i == 2) {
+			word = words[i];
+			words[i].position.x = xCenter;
+			doc.internal.write('q');
+			doc.setFont(word.font);
+			doc.setFontStyle(word.fontStyle);
+			doc.setFontSize(word.fontSize);
+			doc.setTextColor(
+				cmykVal(word.color.c),
+				cmykVal(word.color.m),
+				cmykVal(word.color.y),
+				cmykVal(word.color.k)
+			);
+
+			doc.text(
+				word.contents,
+				word.position.x,
+				word.position.y,
+				{
+					'baseline': 'bottom',
+					'charSpace': getCharSpace(word.fontSize, word.fontTracking),
+					// 'lineHeightFactor': word.fontLeading / word.fontSize,
+					'align': word.align,
+					'renderingMode': 'addToPathForClipping'
+				});
+			doc.rect(0, 0, signWidthOkn, signHeightOkn, 'F');
+			doc.internal.write('Q');
+		} else if (i == 1) {
+			// Сдвиг по оси X для русского названия улицы
+			words[i].position.x = xCenter;
+			word = words[i];
+			doc.internal.write('q');
+			doc.setFont(word.font);
+			doc.setFontStyle(word.fontStyle);
+			doc.setFontSize(word.fontSize);
+			doc.setTextColor(
+				cmykVal(word.color.c),
+				cmykVal(word.color.m),
+				cmykVal(word.color.y),
+				cmykVal(word.color.k)
+			);
+			doc.text(
+				word.contents,
+				word.position.x,
+				word.position.y,
+				{
+					'baseline': 'bottom',
+					'charSpace': getCharSpace(word.fontSize, word.fontTracking),
+					// 'lineHeightFactor': word.fontLeading / word.fontSize,
+					'align': word.align,
+					'renderingMode': 'addToPathForClipping'
+				});
+			doc.rect(0, 0, signWidthOkn, signHeightOkn, 'F');
+			doc.internal.write('Q');
+		} else if (i == 3) {
+			// Сдвиг по оси X для удмуртского названия улицы
+			words[i].position.x = xCenter;
+			word = words[i];
+			doc.internal.write('q');
+			doc.setFont(word.font);
+			doc.setFontStyle(word.fontStyle);
+			doc.setFontSize(word.fontSize);
+			doc.setTextColor(
+				cmykVal(word.color.c),
+				cmykVal(word.color.m),
+				cmykVal(word.color.y),
+				cmykVal(word.color.k)
+			);
+			doc.text(
+				word.contents,
+				word.position.x,
+				word.position.y,
+				{
+					'baseline': 'bottom',
+					'charSpace': getCharSpace(word.fontSize, word.fontTracking),
+					// 'lineHeightFactor': word.fontLeading / word.fontSize,
+					'align': word.align,
+					'renderingMode': 'addToPathForClipping'
+				});
+			doc.rect(0, 0, signWidthOkn, signHeightOkn, 'F');
+			doc.internal.write('Q');
+		} else {
+			words[i].position.x = xCenter;
+			word = words[i];
+			doc.internal.write('q');
+			doc.setFont(word.font);
+			doc.setFontStyle(word.fontStyle);
+			doc.setFontSize(word.fontSize);
+			doc.setTextColor(
+				cmykVal(word.color.c),
+				cmykVal(word.color.m),
+				cmykVal(word.color.y),
+				cmykVal(word.color.k)
+			);
+			doc.text(
+				word.contents,
+				word.position.x,
+				word.position.y,
+				{
+					'baseline': 'bottom',
+					'charSpace': getCharSpace(word.fontSize, word.fontTracking),
+					// 'lineHeightFactor': word.fontLeading / word.fontSize,
+					'align': word.align,
+					'renderingMode': 'addToPathForClipping'
+				});
+			doc.rect(0, 0, signWidthOkn, signHeightOkn, 'F');
+			doc.internal.write('Q');
+		}
+	}
+
+
+
+	// Generate PNG preview
+	generateOknPreview(doc);
+
+	// Save PDF only if savePDF is true
+	if (savePDF) {
+		doc.save(streetType + '_' + streetName + '_' + houseNumber + '_' + signWidthOkn + '×' + signHeightOkn + '.pdf');
+	}
+}
+
 // Создание таблички с названием улицы (сохраняет PDF)
 function createNamePDF() {
 	var streetType = $('#streetType').val();
@@ -2237,8 +3221,20 @@ function generatePreviewOnly() {
 	if (!houseNumberRegex.test(houseNumber.trim())) return;
 
 	if (currentPreviewTab === 'izhs') {
-		createIzhsPDF(false);
-		createIzhsNumberPDF(false);
+		var letterIzhs = ($('#houseLetter').val() || '').trim();
+		if (letterIzhs !== '' && houseLetterRegex.test(letterIzhs)) {
+			var streetTypeIzhs = $('#streetType').val();
+			var streetNameIzhs = $('#streetName').val();
+			if (isStreetHeroStreet(streetTypeIzhs, streetNameIzhs)) {
+				createIzhsTitleWithLetterPDF(false);
+			} else {
+				createIzhsWithLetterPDF(false);
+			}
+			createIzhsNumberWithLetterPDF(false);
+		} else {
+			createIzhsPDF(false);
+			createIzhsNumberPDF(false);
+		}
 		return;
 	}
 	if (currentPreviewTab === 'okn') {
@@ -2250,7 +3246,12 @@ function generatePreviewOnly() {
 			return;
 		}
 		if (oknErrEl) oknErrEl.classList.remove('visible');
-		createOknPDF(false);
+		var letterOkn = ($('#houseLetter').val() || '').trim();
+		if (letterOkn !== '' && houseLetterRegex.test(letterOkn)) {
+			createOknWithLetterPDF(false);
+		} else {
+			createOknPDF(false);
+		}
 		return;
 	}
 	var streetType = $('#streetType').val();
