@@ -18,7 +18,7 @@
 
   <link rel="stylesheet" type="text/css"
     href="../../projects/izh-plates-generator/css/style.css">
-  <!-- <link rel="stylesheet" type="text/css" href="../../css/layout.css"> -->
+  <!--   <link rel="stylesheet" type="text/css" href="../../css/main.css"> -->
   <script>
     (function () {
       var theme = localStorage.getItem('izh-plates-theme') || 'light';
@@ -33,7 +33,7 @@
   <div class="gap L"></div>
 
   <div class="centered header-row">
-    <h1>Генератор адресных табличек Ижевска</h1>
+    <h1>Генератор адресных табличек Ижевска</h1>
 
   </div>
   <div class="gap M"></div>
@@ -128,17 +128,24 @@
   <div class="centered input-group">
     <!-- <div class="input-group"> -->
     <div class="input-group__item">
-      <p>Название</p>
-      <input id="streetName" type="text" placeholder="" spellcheck="false" value="Вадима Сивкова">
+      <p class="small-text">Название</p>
+      <input id="streetName" type="text" placeholder="" spellcheck="false" value="улица им. Вадима Сивкова">
     </div>
     <div class="input-group__item">
-      <p>Номер дома</p>
+      <p class="small-text">Номер дома</p>
       <input id="houseNumber" type="text" placeholder="" spellcheck="false" value="18">
     </div>
     <div class="input-group__item">
-      <p>Корп./стр.</p>
+      <p class="small-text">Стр./корп.</p>
       <input id="houseLetter" type="text" placeholder="" spellcheck="false" value="3">
     </div>
+    <!-- </div> -->
+
+    <!-- <div class="input-group__item"> -->
+    <a type="button" id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">
+      <span class="theme-toggle-icon theme-toggle-icon-sun"></span>
+      <span class="theme-toggle-icon theme-toggle-icon-moon"></span>
+    </a>
     <!-- </div> -->
   </div>
 
@@ -158,12 +165,18 @@
   </div>
 
   <div class="gap S"></div>
-  <div class="centered">
+  <!--   <div class="centered">
     <p class="small-text">PDF в цветовом пространстве CMYK</p>
-  </div>
+  </div> -->
 
-  <div class="gap L"></div>
-  <a type="button" id="theme-toggle" class="theme-toggle" aria-label="Переключить тему"></a>
+  <!--   <div class="gap S"></div>
+  <div class="centered">
+    <a type="button" id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">
+      <span class="theme-toggle-icon theme-toggle-icon-sun"></span>
+      <span class="theme-toggle-icon theme-toggle-icon-moon"></span>
+    </a>
+  </div> -->
+
   <div class="centered input-error-area">
     <div id="street-name-warning">
       <p id="street-name-warning-message">Опечатка: такой улицы нет</p>
@@ -183,17 +196,14 @@
     </div>
   </div>
 
-  <div class="gap L"></div>
-  <div class="gap L"></div>
-  <div class="gap L"></div>
-  <div class="gap L"></div>
-  <div class="gap L"></div>
-  <div class="gap L"></div>
-  <div class="gap L"></div>
-  <div class="gap L"></div>
+  <div class="gap XL"></div>
+
   <!-- Скрытые инпуты -->
   <div class="hidden-fields">
     <input id="streetType" type="text" onInput="this.parentNode.dataset.value = this.value" placeholder=""
+      spellcheck="false" value="">
+    <!-- Raw (name-only) value used by generator logic -->
+    <input id="streetNameRaw" type="text" onInput="this.parentNode.dataset.value = this.value" placeholder=""
       spellcheck="false" value="">
     <input id="streetNameUdm" type="text" onInput="this.parentNode.dataset.value = this.value" placeholder="Удмурт"
       spellcheck="false" value="">
@@ -231,13 +241,11 @@
         if (theme === 'dark') document.documentElement.classList.add('theme-dark');
         else document.documentElement.classList.remove('theme-dark');
         localStorage.setItem(key, theme);
-        el.textContent = theme === 'dark' ? '🌙' : '🌞';
       }
       el.addEventListener('click', function () {
         var next = document.documentElement.classList.contains('theme-dark') ? 'light' : 'dark';
         applyTheme(next);
       });
-      el.textContent = document.documentElement.classList.contains('theme-dark') ? '🌙' : '🌞';
     })();
   </script>
 </body>

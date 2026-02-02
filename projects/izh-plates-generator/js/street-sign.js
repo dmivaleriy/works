@@ -95,6 +95,48 @@ let nameWordIndent = 0 /* 4.534 */;
 var validStreetNames = null;
 /** Полный список улиц из sign-suggest-list.json (для проверки isOKN) */
 var signSuggestList = null;
+// Visible #streetName can contain "type name" for UX; keep raw (name-only) in #streetNameRaw for generator logic.
+function getStreetNameRawValue() {
+	var rawEl = document.getElementById('streetNameRaw');
+	if (rawEl && typeof rawEl.value === 'string') return rawEl.value.trim();
+	var el = document.getElementById('streetName');
+	return el && typeof el.value === 'string' ? el.value.trim() : '';
+}
+function syncStreetNameRawFromDisplay() {
+	var displayEl = document.getElementById('streetName');
+	var rawEl = document.getElementById('streetNameRaw');
+	if (!displayEl || !rawEl) return;
+	var display = (displayEl.value || '').trim();
+
+	// Best effort: if the display string matches a known suggestion ("type titleRu? name"),
+	// keep raw strictly as name-only.
+	if (signSuggestList && display) {
+		var displayLower = display.toLowerCase();
+		for (var i = 0; i < signSuggestList.length; i++) {
+			var o = signSuggestList[i] || {};
+			var type = o.type ? String(o.type).toLowerCase().trim() : '';
+			var titleRu = o.titleRu ? String(o.titleRu).trim() : '';
+			var name = o.name ? String(o.name).trim() : '';
+			var parts = [];
+			if (type) parts.push(type);
+			if (titleRu) parts.push(titleRu);
+			if (name) parts.push(name);
+			if (parts.join(' ').toLowerCase() === displayLower) {
+				rawEl.value = name;
+				return;
+			}
+		}
+	}
+
+	var typeEl = document.getElementById('streetType');
+	var type = typeEl ? (typeEl.value || '').trim().toLowerCase() : '';
+	// If the visible value starts with "type " (same as suggestions), strip it to keep raw name-only.
+	if (type && display.toLowerCase().indexOf(type + ' ') === 0) {
+		rawEl.value = display.slice((type + ' ').length).trim();
+	} else {
+		rawEl.value = display;
+	}
+}
 function isStreetNameValid(name) {
 	var n = (name || '').trim();
 	if (!validStreetNames || !n) return false;
@@ -130,9 +172,19 @@ var currentPreviewTab = 'buildings';
 // Есть ли хотя бы одна подсказка для введённого текста (как в autocomplete: название начинается с phrase)
 function hasSuggestionFor(phrase) {
 	var p = (phrase || '').trim().toLowerCase();
-	if (!validStreetNames || !p) return false;
-	for (var i = 0; i < validStreetNames.length; i++) {
-		if (String(validStreetNames[i]).toLowerCase().indexOf(p) !== -1) return true;
+	if (!signSuggestList || !p) return false;
+	for (var i = 0; i < signSuggestList.length; i++) {
+		var o = signSuggestList[i] || {};
+		// Match in the same order user sees/enters ("type name ..."), but keep titleRu searchable too.
+		var hay = [
+			o.type ? String(o.type).toLowerCase() : '',
+			o.name ? String(o.name) : '',
+			o.titleRu ? String(o.titleRu) : ''
+		].filter(Boolean).join(' ').toLowerCase();
+		if (hay.indexOf(p) !== -1) return true;
+		// Also allow searching by name-only even if user types without type prefix.
+		var nameOnly = (o.name ? String(o.name) : '').toLowerCase();
+		if (nameOnly && nameOnly.indexOf(p) !== -1) return true;
 	}
 	return false;
 }
@@ -275,7 +327,7 @@ $(document).ready(function () {
 		var letter = ($('#houseLetter').val() || '').trim();
 		if (letter !== '' && houseLetterRegex.test(letter)) {
 			var streetType = $('#streetType').val();
-			var streetName = $('#streetName').val();
+			var streetName = getStreetNameRawValue();
 			if (isStreetHeroStreet(streetType, streetName)) {
 				createIzhsTitleWithLetterPDF(true);
 			} else {
@@ -317,7 +369,7 @@ $(document).ready(function () {
 			}
 			var streetNameInput = document.getElementById('streetName');
 			var houseLetterInput = document.getElementById('houseLetter');
-			var streetVal = streetNameInput && streetNameInput.value.trim();
+			var streetVal = getStreetNameRawValue();
 			var letterVal = houseLetterInput ? (houseLetterInput.value || '').trim() : '';
 			if (streetNameInput && streetVal !== '' && houseNumberValid &&
 				isStreetNameValid(streetVal) &&
@@ -328,6 +380,7 @@ $(document).ready(function () {
 	}
 
 	$('#streetName').on('input', function () {
+		syncStreetNameRawFromDisplay();
 		updateStreetNameWarning();
 		debouncedPreviewUpdate();
 	});
@@ -404,7 +457,7 @@ $(document).ready(function () {
 		var streetNameInput = document.getElementById('streetName');
 		var houseNumberInput = document.getElementById('houseNumber');
 		var houseLetterInput = document.getElementById('houseLetter');
-		var streetVal = streetNameInput && streetNameInput.value.trim();
+		var streetVal = getStreetNameRawValue();
 		var letterVal = houseLetterInput ? (houseLetterInput.value || '').trim() : '';
 		if (streetNameInput && streetVal !== '' &&
 			houseNumberInput && houseNumberInput.value.trim() !== '' &&
@@ -501,7 +554,7 @@ function generateNameTitlePreview(doc) { generatePreview(doc, 'name-preview'); }
 function createStreetNamePDF(savePDF) {
 	// Получение значений из формы
 	var streetType = $('#streetType').val();
-	var streetName = $('#streetName').val();
+	var streetName = getStreetNameRawValue();
 	var streetNameUdm = $('#streetNameUdm').val();
 	var streetTypeUdm = $('#streetTypeUdm').val();
 
@@ -777,7 +830,7 @@ function createStreetNamePDF(savePDF) {
 function createStreetNameTitlePDF(savePDF) {
 	// Получение значений из формы
 	var streetType = $('#streetType').val();
-	var streetName = $('#streetName').val();
+	var streetName = getStreetNameRawValue();
 	var streetNameUdm = $('#streetNameUdm').val();
 	var streetTypeUdm = $('#streetTypeUdm').val();
 	var entry = getStreetEntry(streetType, streetName);
@@ -1246,7 +1299,7 @@ function createNumberWithLetterPDF(savePDF) {
 function createIzhsPDF(savePDF) {
 	// Получение значений из формы
 	var streetType = $('#streetType').val();
-	var streetName = $('#streetName').val();
+	var streetName = getStreetNameRawValue();
 	var streetNameUdm = $('#streetNameUdm').val();
 	var streetTypeUdm = $('#streetTypeUdm').val();
 	var houseNumber = $('#houseNumber').val();
@@ -1565,7 +1618,7 @@ function createIzhsPDF(savePDF) {
 function createIzhsWithLetterPDF(savePDF) {
 	// Получение значений из формы
 	var streetType = $('#streetType').val();
-	var streetName = $('#streetName').val();
+	var streetName = getStreetNameRawValue();
 	var streetNameUdm = $('#streetNameUdm').val();
 	var streetTypeUdm = $('#streetTypeUdm').val();
 	var houseNumber = $('#houseNumber').val();
@@ -1884,7 +1937,7 @@ function createIzhsWithLetterPDF(savePDF) {
 function createIzhsTitlePDF(savePDF) {
 	// Получение значений из формы
 	var streetType = $('#streetType').val();
-	var streetName = $('#streetName').val();
+	var streetName = getStreetNameRawValue();
 	var streetNameUdm = $('#streetNameUdm').val();
 	var streetTypeUdm = $('#streetTypeUdm').val();
 	var houseNumber = $('#houseNumber').val();
@@ -2203,7 +2256,7 @@ function createIzhsTitlePDF(savePDF) {
 function createIzhsTitleWithLetterPDF(savePDF) {
 	// Получение значений из формы
 	var streetType = $('#streetType').val();
-	var streetName = $('#streetName').val();
+	var streetName = getStreetNameRawValue();
 	var streetNameUdm = $('#streetNameUdm').val();
 	var streetTypeUdm = $('#streetTypeUdm').val();
 	var houseNumber = $('#houseNumber').val();
@@ -2631,7 +2684,7 @@ function createIzhsNumberWithLetterPDF(savePDF) {
 // Табличка для ОКН, 400x600 мм
 function createOknPDF(savePDF) {	// Получение значений из формы
 	var streetType = $('#streetType').val();
-	var streetName = $('#streetName').val();
+	var streetName = getStreetNameRawValue();
 	var streetNameUdm = $('#streetNameUdm').val();
 	var streetTypeUdm = $('#streetTypeUdm').val();
 	var houseNumber = $('#houseNumber').val();
@@ -2937,7 +2990,7 @@ function createOknPDF(savePDF) {	// Получение значений из ф�
 // !! Табличка для ОКН с литерой, 400x600 мм
 function createOknWithLetterPDF(savePDF) {	// Получение значений из формы
 	var streetType = $('#streetType').val();
-	var streetName = $('#streetName').val();
+	var streetName = getStreetNameRawValue();
 	var streetNameUdm = $('#streetNameUdm').val();
 	var streetTypeUdm = $('#streetTypeUdm').val();
 	var houseNumber = $('#houseNumber').val();
@@ -3206,7 +3259,7 @@ function createOknWithLetterPDF(savePDF) {	// Получение значени�
 // Создание таблички с названием улицы (сохраняет PDF)
 function createNamePDF() {
 	var streetType = $('#streetType').val();
-	var streetName = $('#streetName').val();
+	var streetName = getStreetNameRawValue();
 	if (isStreetHeroStreet(streetType, streetName)) {
 		createStreetNameTitlePDF(true);
 	} else {
@@ -3224,7 +3277,7 @@ function generatePreviewOnly() {
 		var letterIzhs = ($('#houseLetter').val() || '').trim();
 		if (letterIzhs !== '' && houseLetterRegex.test(letterIzhs)) {
 			var streetTypeIzhs = $('#streetType').val();
-			var streetNameIzhs = $('#streetName').val();
+			var streetNameIzhs = getStreetNameRawValue();
 			if (isStreetHeroStreet(streetTypeIzhs, streetNameIzhs)) {
 				createIzhsTitleWithLetterPDF(false);
 			} else {
@@ -3239,7 +3292,7 @@ function generatePreviewOnly() {
 	}
 	if (currentPreviewTab === 'okn') {
 		var streetType = $('#streetType').val();
-		var streetName = $('#streetName').val();
+		var streetName = getStreetNameRawValue();
 		var oknErrEl = document.getElementById('okn-input-error');
 		if (!isStreetOkn(streetType, streetName)) {
 			if (oknErrEl) oknErrEl.classList.add('visible');
@@ -3255,7 +3308,7 @@ function generatePreviewOnly() {
 		return;
 	}
 	var streetType = $('#streetType').val();
-	var streetName = $('#streetName').val();
+	var streetName = getStreetNameRawValue();
 	if (!streetName || streetName.trim() === '') return;
 	if (!isStreetNameValid(streetName)) return;
 	if (isStreetHeroStreet(streetType, streetName)) {
