@@ -6,15 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Генератор адресных табличек Ижевска</title>
 
-  <!-- <meta property="og:image" content="src/assets/images/social.jpg"> -->
+  <meta property="og:image" content="../../projects/izh-plates-generator/img/social.jpg">
   <meta property="og:description" content="Описание генератора">
   <!-- <meta property="og:url" content="https://dmivaleriy.github.io/works/projects/izh-plates-generator"> -->
   <title>Генератор адресных табличек Ижевска</title>
   <meta name="description" content="Описание генератора">
 
-  <!-- <link rel="icon" href="../../assets/images/favicon.png" type="image/x-icon"> -->
-  <!-- <link rel="shortcut icon" href="../../assets/images/favicon.png" type="image/x-icon"> -->
-  <!-- <link rel="apple-touch-icon" href="../../assets/images/favicon.png"> -->
+  <link rel="icon" href="../../projects/izh-plates-generator/img/icon.png"
+    type="image/x-icon">
+  <link rel="shortcut icon" href="../../projects/izh-plates-generator/img/icon.png"
+    type="image/x-icon">
+  <link rel="apple-touch-icon" href="../../projects/izh-plates-generator/img/icon.png">
 
   <link rel="stylesheet" type="text/css"
     href="../../projects/izh-plates-generator/css/style.css">
@@ -126,10 +128,10 @@
 
   <div class="gap M"></div>
   <div class="centered input-group">
-    <!-- <div class="input-group"> -->
+
     <div class="input-group__item">
       <p class="small-text">Название</p>
-      <input id="streetName" type="text" placeholder="" spellcheck="false" value="улица им. Вадима Сивкова">
+      <input id="streetName" type="text" placeholder="" spellcheck="false" value="улица Вадима Сивкова">
     </div>
     <div class="input-group__item">
       <p class="small-text">Номер дома</p>
@@ -139,14 +141,7 @@
       <p class="small-text">Стр./корп.</p>
       <input id="houseLetter" type="text" placeholder="" spellcheck="false" value="3">
     </div>
-    <!-- </div> -->
 
-    <!-- <div class="input-group__item"> -->
-    <a type="button" id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">
-      <span class="theme-toggle-icon theme-toggle-icon-sun"></span>
-      <span class="theme-toggle-icon theme-toggle-icon-moon"></span>
-    </a>
-    <!-- </div> -->
   </div>
 
 
@@ -165,17 +160,17 @@
   </div>
 
   <div class="gap S"></div>
-  <!--   <div class="centered">
+  <!--  <div class="centered">
     <p class="small-text">PDF в цветовом пространстве CMYK</p>
-  </div> -->
-
-  <!--   <div class="gap S"></div>
+  </div>
+ -->
+  <div class="gap S"></div>
   <div class="centered">
     <a type="button" id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">
       <span class="theme-toggle-icon theme-toggle-icon-sun"></span>
       <span class="theme-toggle-icon theme-toggle-icon-moon"></span>
     </a>
-  </div> -->
+  </div>
 
   <div class="centered input-error-area">
     <div id="street-name-warning">
@@ -229,7 +224,9 @@
   <script type="text/javascript"
     src="../../projects/izh-plates-generator/js/fonts.js"></script>
   <script type="text/javascript"
-    src="../../projects/izh-plates-generator/js/street-sign.js"></script>
+    src="../../projects/izh-plates-generator/js/generator/settings.js"></script>
+  <script type="text/javascript"
+    src="../../projects/izh-plates-generator/js/generator/layouts.js"></script>
   <script type="text/javascript"
     src="../../projects/izh-plates-generator/js/jquery.js"></script>
   <script>

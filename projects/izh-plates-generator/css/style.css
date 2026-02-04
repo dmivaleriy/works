@@ -61,9 +61,10 @@ img {
 }
 
 html.theme-dark {
-  --main-color: 8, 11, 17;
-  --background: 8, 11, 17;
-  --text-secondary: 8, 11, 17;
+  /* --main-color: 8, 11, 17; */
+  --main-color: 0, 0, 0;
+  --background: 0, 0, 0;
+  --text-secondary: 0, 0, 0;
   --input-background: var(--background);
   --error: 255, 84, 84;
 
@@ -122,7 +123,7 @@ h1 {
   line-height: 0;
   overflow: hidden;
   color: var(--theme-toggle-icon-color);
-  transform: translateY(10.5px);
+  /* transform: translateY(10.5px); */
 }
 
 html.theme-dark .theme-toggle {

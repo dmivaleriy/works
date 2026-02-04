@@ -19,7 +19,7 @@ function highlightText(text, phrase) {
 
 function formatSuggestionDisplayText(item) {
   if (!item) return '';
-  var type = (item.type ? String(item.type).toLowerCase() : '').trim();
+  var type = (item.type ? String(item.type) : '').trim();
   var titleRu = (item.titleRu ? String(item.titleRu) : '').trim();
   var name = (item.name ? String(item.name) : '').trim();
   var parts = [];
@@ -30,12 +30,12 @@ function formatSuggestionDisplayText(item) {
 }
 
 var options = {
-  url: 'js/sign-suggest-list.json',
+  url: 'js/generator/sign-suggest-list.json',
   // Used for matching. We want to search by name, type, titleRu.
   // NOTE: dropdown display is controlled by template.method below.
   getValue: function (item) {
     if (!item) return '';
-    var type = item.type ? String(item.type).toLowerCase() : '';
+    var type = item.type ? String(item.type) : '';
     var name = item.name ? String(item.name) : '';
     var titleRu = item.titleRu ? String(item.titleRu) : '';
     return [type, name, titleRu].filter(Boolean).join(' ');
@@ -71,9 +71,9 @@ var options = {
       $("#streetName").val(formatSuggestionDisplayText(selectedData));
       // Keep raw name (name-only) for generator logic.
       $("#streetNameRaw").val(selectedData.name || "");
-      $("#streetType").val((selectedData.type || "").toLowerCase());
+      $("#streetType").val(selectedData.type || "");
       $("#streetNameUdm").val(selectedData.nameUdm || "");
-      $("#streetTypeUdm").val((selectedData.typeUdm || "").toLowerCase());
+      $("#streetTypeUdm").val((selectedData.typeUdm || ""));
 
       // Update preview only after click on suggestion
       setTimeout(function () {
@@ -95,7 +95,7 @@ var options = {
       // console.log(item.type);
       // Highlight in type, titleRu, and name: match what user typed (each word highlighted in any field).
       var phrase = ($streetName && $streetName.val) ? String($streetName.val()).trim() : '';
-      var type = (item && item.type) ? String(item.type).toLowerCase() : '';
+      var type = (item && item.type) ? String(item.type) : '';
       var titleRu = (item && item.titleRu) ? String(item.titleRu) : '';
       var name = (item && item.name) ? String(item.name) : '';
 
@@ -135,7 +135,7 @@ $streetName.easyAutocomplete(options);
     }
     if (item) {
       $('#streetNameRaw').val(item.name || '');
-      $('#streetType').val((item.type || '').toLowerCase());
+      $('#streetType').val(item.type || '');
       $('#streetNameUdm').val(item.nameUdm || '');
       $('#streetTypeUdm').val(item.typeUdm || '');
     }
