@@ -124,6 +124,11 @@
         /* box-sizing: border-box; */
         /* transition: transform .2s; */
 
+        @media (width < 767px) {
+          font-size: 1.25em;
+          /* padding: 0.25em 0.5em 0.35em 0.5em; */
+        }
+
         &:hover {
           color: rgb(var(--ids__hover-RGB));
           text-decoration-color: rgba(var(--ids__hover-RGB), 0.5);
@@ -157,33 +162,41 @@
         /* box-sizing: border-box; */
         /* transition: transform .2s, color 0.5s ease, background-color 0.5s ease; */
 
+        @media (width < 767px) {
+          font-size: 1.25em;
+          /* padding: 0.25em 0.5em 0.35em 0.5em; */
+        }
+
         &.aside {
           /* border: 2px solid rgba(var(--ids__text-RGB), 1); */
           /* background-color: RGB(var(--ids__background-RGB)); */
           /* color: rgb(var(--ids__text-RGB), 1); */
+          color: rgba(var(--ids__text-RGB), 1);
+          font-size: clamp(1.75rem, 4.5vw, 4rem);
+          display: block;
+          background: none;
+          text-align: center;
+          /* transform: scale(1); */
+          /* transition: transform .2s ease; */
+          background-color: rgba(var(--ids__background-RGB), 1);
+          margin-right: 0;
+
+          &:hover {
+            background-color: rgba(var(--ids__hover-RGB), 1);
+            /* background: none; */
+
+            /* background-color: rgba(var(--izh-dark-RGB), 1); */
+            /* transform: scale(1.02); */
+            /* transition: transform .2s ease; */
+            /* color: rgba(var(--izh-dark-RGB), 1); */
+          }
 
           &.izh {
-            /* background: none; */
             /* border-radius: calc(var(--ids__radius) * 1); */
 
-            /* display: block; */
-            /* text-align: center; */
             /* font-size: clamp(2rem, 5vw, 5rem); */
-            /* font-size: clamp(1.75rem, 4.5vw, 4rem); */
             /* width: 100%; */
             /* box-sizing: border-box; */
-            /* color: rgba(var(--izh-dark-RGB), 1); */
-            /* transform: scale(1); */
-            /* transition: transform .2s ease; */
-
-            &:hover {
-              /* background-color: rgba(var(--ids__hover-RGB), 0.75); */
-
-              /* background-color: rgba(var(--izh-dark-RGB), 1); */
-              /* transform: scale(1.015); */
-              /* transition: transform .2s ease; */
-              /* color: rgba(var(--izh-light-RGB), 1); */
-            }
 
             @media (width < 767px) {
               /* font-size: 1.75em; */
@@ -465,7 +478,7 @@
     &.cv {
       /* opacity: 0.25; */
       color: rgba(var(--ids__text-secondary-RGB), 1);
-      font-weight: 500;
+      /* font-weight: 500; */
     }
   }
 
