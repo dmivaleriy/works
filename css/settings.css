@@ -28,7 +28,7 @@ body {
 
 :root {
   --ids__density: 1.5;
-  --ids__radius: 0.75rem;
+  --ids__radius: 0.35rem;
   /* --ids__radius: 0; */
 }
 

@@ -12,7 +12,7 @@
     transition: text-decoration-color 0.5s ease, color 0.5s ease;
 
     &.aside {
-      color: RGB(var(--ids__text-secondary-RGB));
+      /* color: RGB(var(--ids__text-secondary-RGB)); */
     }
 
     &:hover {
@@ -576,16 +576,18 @@
 
   & aside {
     /* box-shadow: 0 0 30px rgba(var(--ids__text-RGB), 0.15); */
-    margin-top: calc(var(--ids__density) * 1.5em);
-    border-radius: calc(var(--ids__radius) * 2.25);
-
+    border-radius: calc(var(--ids__radius) * 3.5);
     background: rgb(var(--ids__surface-RGB));
-    margin-left: calc(var(--ids__density) * -1em);
-    padding-left: calc(var(--ids__density) * 1em);
-    margin-right: calc(var(--ids__density) * -1em);
-    padding-right: calc(var(--ids__density) * 1em);
+
     padding-top: calc(var(--ids__density) * 1em);
+    padding-right: calc(var(--ids__density) * 1em);
     padding-bottom: calc(var(--ids__density) * 1em);
+    padding-left: calc(var(--ids__density) * 1em);
+
+    margin-top: calc(var(--ids__density) * 1.5em);
+    margin-right: calc(var(--ids__density) * -1em);
+    /* margin-bottom: calc(var(--ids__density) * 1em); */
+    margin-left: calc(var(--ids__density) * -1em);
 
     &.izh {
       background-color: rgba(var(--izh-RGB), 1);
@@ -702,4 +704,14 @@
     border-top-color: rgba(var(--ids__text-RGB), 0.2);
     border-bottom: 0;
   }
+}
+
+.label {
+  /* background-color: rgba(var(--ids__text-secondary-RGB), 1); */
+  background-color: rgba(var(--ids__hover-RGB), 1);
+  padding: 0.025em 0.25em 0.2em 0.35em;
+  border-radius: 0.25em;
+  font-weight: 500;
+  /* transform: translateY(0.35em); */
+  /* margin-top: 5em; */
 }

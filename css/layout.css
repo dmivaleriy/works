@@ -246,12 +246,10 @@ img {
 .all-projects-image {
   margin: 1.5em 0 .15em 0;
   height: auto;
-  /* transform: translateX(-2px); */
-  /* overflow: visible; */
-  /* position: relative; */
+
 
   @media (width < 767px) {
-    width: 75%;
+    width: 65%;
   }
 }
 
@@ -356,7 +354,7 @@ footer {
   @media (width < 767px) {
     columns: 1;
     column-gap: 0;
-    width: 90%;
+    width: 85%;
   }
 }
 
@@ -370,5 +368,28 @@ footer {
     display: block;
     gap: 0;
   }
+}
 
+.main-projects-2col {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+
+  /* flex-direction: column; */
+  /* gap: 10em; */
+
+  @media screen and (width < 767px) {
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  &.comparison {
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* gap: 1em; */
+
+    @media screen and (width < 767px) {
+      flex-direction: row;
+    }
+  }
 }
