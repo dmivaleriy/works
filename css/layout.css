@@ -404,3 +404,27 @@ footer {
     }
   }
 }
+
+/* Parallax: container stays in place and acts as mask; only the picture moves on scroll */
+.scroll-moving-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1000 / 545;
+  border-radius: var(--ids__radius);
+  /* box-shadow: 0 0 0 1px rgba(var(--ids__text-RGB), 0.075); */
+  contain: layout paint;
+}
+
+.scroll-moving-container img {
+  position: absolute;
+  inset: -150px 0 0 0;
+  width: 100%;
+  /* height: 100%; */
+  object-fit: contain;
+  border-radius: 0;
+
+  @media screen and (width < 767px) {
+    inset: -45px 0 0 0;
+  }
+}
