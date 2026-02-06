@@ -199,7 +199,7 @@
 }
 
 img {
-  box-shadow: 0 0 0 1px rgba(var(--imgOutlineColor), 0.25);
+  /* box-shadow: 0 0 0 1px rgba(var(--imgOutlineColor), 0.25); */
   /* border-style: 1px solid rgba(var(--ids__text-RGB), 1); */
   /* border: 1px solid red; */
   border-radius: var(--ids__radius);
@@ -374,6 +374,17 @@ footer {
   display: flex;
   flex-direction: row;
   gap: 1em;
+
+  >div {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 
   /* flex-direction: column; */
   /* gap: 10em; */
