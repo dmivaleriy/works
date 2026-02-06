@@ -425,6 +425,6 @@ footer {
   border-radius: 0;
 
   @media screen and (width < 767px) {
-    inset: -45px 0 0 0;
+    inset: -65px 0 0 0;
   }
 }
