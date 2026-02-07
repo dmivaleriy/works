@@ -3,7 +3,7 @@
   if (!containers.length) return;
 
   var ticking = false;
-  var factor = -0.15;
+  var factor = 0.15;
 
   function update() {
     var viewportCenter = window.innerHeight / 2;

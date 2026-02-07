@@ -179,7 +179,7 @@
         }
 
         &.aside {
-          background: rgba(var(--izh-dark-RGB), 1);
+          /* background: rgba(var(--izh-dark-RGB), 1); */
           /* color: rgba(var(--izh-dark-RGB), 1); */
           /* color: rgb(var(--ids__background-RGB), 1); */
 
