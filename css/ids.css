@@ -82,7 +82,7 @@
       }
 
       @media (width < 767px) {
-        text-align: center;
+        /* text-align: center; */
         display: block;
         padding: 0 0 0.35em 0;
       }
@@ -179,8 +179,8 @@
         }
 
         &.aside {
-          background: rgba(var(--izh-light-RGB), 1);
-          color: rgba(var(--izh-dark-RGB), 1);
+          background: rgba(var(--izh-dark-RGB), 1);
+          /* color: rgba(var(--izh-dark-RGB), 1); */
           /* color: rgb(var(--ids__background-RGB), 1); */
 
           /* border: 2px solid rgba(var(--ids__text-RGB), 1); */
@@ -199,7 +199,7 @@
 
           &:hover {
             /* background-color: rgba(var(--ids__hover-RGB), 1); */
-            background: rgba(var(--izh-dark-RGB), 1);
+            /* background: rgba(var(--izh-dark-RGB), 1); */
             /* background: none; */
 
             /* background-color: rgba(var(--izh-dark-RGB), 1); */
