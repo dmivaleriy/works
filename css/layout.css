@@ -199,7 +199,7 @@
 }
 
 img {
-  /* box-shadow: 0 0 0 1px rgba(var(--imgOutlineColor), 0.25); */
+  box-shadow: 0 0 0 1px rgba(var(--imgOutlineColor), 0.05);
   /* border-style: 1px solid rgba(var(--ids__text-RGB), 1); */
   /* border: 1px solid red; */
   border-radius: var(--ids__radius);
@@ -412,7 +412,7 @@ footer {
   width: 100%;
   aspect-ratio: 1000 / 545;
   border-radius: var(--ids__radius);
-  /* box-shadow: 0 0 0 1px rgba(var(--ids__text-RGB), 0.075); */
+  box-shadow: 0 0 0 1px rgba(var(--imgOutlineColor), 0.05);
   contain: layout paint;
 }
 

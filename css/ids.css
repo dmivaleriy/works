@@ -136,7 +136,7 @@
         /* transition: transform .2s; */
 
         @media (width < 767px) {
-          font-size: 1.25em;
+          font-size: 1em;
           /* padding: 0.25em 0.5em 0.35em 0.5em; */
         }
 
@@ -162,7 +162,7 @@
         /* width: auto; */
         /* min-width: 120px; */
         /* text-align: center; */
-        margin-right: 0.25em;
+        margin-right: 0.15em;
         /* translate: 0 -0.35em; */
         /* transform: translateY(-0.35em); */
         text-decoration: none;
@@ -174,33 +174,37 @@
         /* transition: transform .2s, color 0.5s ease, background-color 0.5s ease; */
 
         @media (width < 767px) {
-          font-size: 1.25em;
+          /* font-size: 1.25em; */
           /* padding: 0.25em 0.5em 0.35em 0.5em; */
         }
 
         &.aside {
+          background: rgba(var(--izh-light-RGB), 1);
+          color: rgba(var(--izh-dark-RGB), 1);
+          /* color: rgb(var(--ids__background-RGB), 1); */
+
           /* border: 2px solid rgba(var(--ids__text-RGB), 1); */
           /* background-color: RGB(var(--ids__background-RGB)); */
           /* color: rgb(var(--ids__text-RGB), 1); */
-          color: rgba(var(--ids__text-RGB), 1);
+          /* color: rgba(var(--ids__text-RGB), 1); */
           /* font-size: clamp(1.75rem, 4.5vw, 4rem); */
           font-size: 1.5em;
           display: inline-block;
-          background: none;
+          /* background: none; */
           text-align: center;
           /* transform: scale(1); */
           /* transition: transform .2s ease; */
-          background-color: rgba(var(--ids__background-RGB), 1);
+          /* background-color: rgba(var(--ids__background-RGB), 1); */
           margin-right: 0;
 
           &:hover {
-            background-color: rgba(var(--ids__hover-RGB), 1);
+            /* background-color: rgba(var(--ids__hover-RGB), 1); */
+            background: rgba(var(--izh-dark-RGB), 1);
             /* background: none; */
 
             /* background-color: rgba(var(--izh-dark-RGB), 1); */
             /* transform: scale(1.02); */
             /* transition: transform .2s ease; */
-            /* color: rgba(var(--izh-dark-RGB), 1); */
           }
 
           @media (width < 767px) {
