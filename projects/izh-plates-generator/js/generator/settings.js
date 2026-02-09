@@ -22,16 +22,16 @@ function cmykVal(num) {
 let previewDelay = 0
 let previewScale = .5
 
-// Плейсхолдеры при загрузке
+// Превью по умолчанию (показываются до загрузки сгенерированного превью или при ошибке)
 var defaultNamePreviewSrc = 'img/default-name-preview.png';
 var defaultNumberPreviewSrc = 'img/default-number-preview.png';
-// Видимый плейсхолдер для всех браузеров, в т.ч. Safari (SVG в data URL)
-var defaultPlaceholderFallback = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
-	'<svg xmlns="http://www.w3.org/2000/svg" width="320" height="120" viewBox="0 0 320 120">' +
-	'<rect width="320" height="120" fill="#eee" stroke="#ccc" stroke-width="1"/>' +
-	'<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#999" font-family="sans-serif" font-size="14">Превью</text>' +
-	'</svg>'
-);
+var defaultPreviewSrc = {
+	'name-preview': 'img/default-name-preview.png',
+	'number-preview': 'img/default-number-preview.png',
+	'izhs-preview': 'img/default-name-preview.png',
+	'izhs-number-preview': 'img/default-number-preview.png',
+	'okn-preview': 'img/default-name-preview.png'
+};
 
 // Цвета
 var fillColor = {
@@ -247,19 +247,12 @@ function drawWord(doc, word) {
 //* ГЕНЕРАЦИЯ ПДФ И ПРЕВЬЮ *//
 // Скачать ПДФ
 $(document).ready(function () {
-	// Плейсхолдеры превью: сначала показываем data URL (работает в Safari, нет запроса), затем при успехе подменяем на свой файл
-	function setDefaultPreview($img, defaultSrc) {
-		$img.attr('src', defaultPlaceholderFallback);
-		if (defaultSrc) {
-			var testImg = new Image();
-			testImg.onload = function () {
-				$img.attr('src', defaultSrc);
-			};
-			testImg.src = defaultSrc;
-		}
-	}
-	setDefaultPreview($('#name-preview'), defaultNamePreviewSrc);
-	setDefaultPreview($('#number-preview'), defaultNumberPreviewSrc);
+	// Показываем превью по умолчанию до первой успешной генерации из PDF
+	$('#name-preview').attr('src', defaultNamePreviewSrc);
+	$('#number-preview').attr('src', defaultNumberPreviewSrc);
+	$('#izhs-preview').attr('src', defaultNamePreviewSrc);
+	$('#izhs-number-preview').attr('src', defaultNumberPreviewSrc);
+	$('#okn-preview').attr('src', defaultNamePreviewSrc);
 
 	$.getJSON('js/generator/sign-suggest-list.json').done(function (data) {
 		signSuggestList = data;
@@ -503,6 +496,7 @@ function generatePreview(doc, previewElementId) {
 	}
 	if (typeof pdfjsLib === 'undefined') {
 		console.warn('PDF.js not loaded. Include PDF.js for PNG preview.');
+		setDefaultPreviewFallback(previewElement, previewElementId);
 		return;
 	}
 	try {
@@ -540,10 +534,17 @@ function generatePreview(doc, previewElementId) {
 			});
 		}).catch(function (error) {
 			console.error('Error rendering PNG preview:', error);
+			setDefaultPreviewFallback(previewElement, previewElementId);
 		});
 	} catch (e) {
 		console.error('Error generating PNG preview:', e);
+		setDefaultPreviewFallback(previewElement, previewElementId);
 	}
+}
+
+function setDefaultPreviewFallback(previewElement, previewElementId) {
+	var src = defaultPreviewSrc[previewElementId];
+	if (src && previewElement) previewElement.src = src;
 }
 
 // Обёртки для обратной совместимости

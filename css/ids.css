@@ -213,11 +213,39 @@
           }
 
           &.izh {
+            /* background-color: rgba(var(--izh-light-RGB), 1); */
+            background-color: rgba(var(--ids__background-RGB), 1);
+            color: rgb(var(--izh-dark-RGB), 1);
             /* border-radius: calc(var(--ids__radius) * 1); */
 
             /* font-size: clamp(2rem, 5vw, 5rem); */
             /* width: 100%; */
             /* box-sizing: border-box; */
+
+            &:hover {
+              background-color: rgba(var(--izh-dark-RGB), 1);
+              color: rgb(var(--izh-light-RGB), 1);
+            }
+          }
+
+          &.bus {
+            background-color: rgba(var(--ids__background-RGB), 1);
+            color: rgb(var(--bus-dark-RGB), 1);
+
+            &:hover {
+              background-color: rgba(var(--bus-dark-RGB), 1);
+              color: rgb(var(--bus-light-RGB), 1);
+            }
+          }
+
+          &.transport {
+            background-color: rgba(var(--ids__background-RGB), 1);
+            color: rgb(var(--transport-dark-RGB), 1);
+
+            &:hover {
+              background-color: rgba(var(--transport-dark-RGB), 1);
+              color: rgb(var(--ids__background-RGB), 1);
+            }
           }
         }
 
@@ -315,7 +343,7 @@
       /* font-size: 1.25em; */
       line-height: calc(var(--ids__density) / 1.15);
       /* opacity: 0.25; */
-      color: RGB(var(--ids__text-secondary-RGB));
+      /* color: RGB(var(--ids__text-secondary-RGB)); */
       /* color: RGB(var(--ids__text-RGB)); */
       font-weight: 500;
       margin-top: calc(var(--ids__density) * 0.25em);
@@ -326,6 +354,19 @@
 
       &.figcaption {
         width: 90%;
+
+        &.izh {
+          color: rgb(var(--izh-dark-RGB), 1);
+        }
+
+        &.bus {
+          color: rgb(var(--bus-dark-RGB), 1);
+        }
+
+        &.transport {
+          color: rgb(var(--transport-dark-RGB), 1);
+
+        }
       }
 
       &.cv {
@@ -607,8 +648,18 @@
     margin-left: calc(var(--ids__density) * -1em);
 
     &.izh {
-      background-color: rgba(var(--izh-RGB), 1);
+      background-color: rgba(var(--izh-dark-RGB), .15);
       /* color: rgb(var(--ids__background-RGB), 1); */
+    }
+
+    &.bus {
+      background-color: rgba(var(--bus-dark-RGB), .075);
+      /* box-shadow: 0 0 0 1px rgba(var(--bus-dark-RGB), .15); */
+    }
+
+    &.transport {
+      background-color: rgba(var(--transport-dark-RGB), .05);
+      /* box-shadow: 0 0 0 1px rgba(var(--ids__background-RGB), .15); */
     }
 
     @media (width < 767px) {
