@@ -7,8 +7,8 @@
   --ids__accent-RGB: 255, 57, 1;
   --ids__code-RGB: 115, 120, 125;
   --ids__mark-RGB: 255, 225, 0;
-  /* --ids__surface-RGB: 249, 250, 251; */
-  --ids__surface-RGB: var(--ids__background-RGB);
+  --ids__surface-RGB: 249, 250, 251;
+  /* --ids__surface-RGB: var(--ids__background-RGB); */
   --ids__background-RGB: 255, 255, 255;
   --ids__black-RGB: 8, 11, 17;
   --imgOutlineColor: var(--ids__text-secondary-RGB);
