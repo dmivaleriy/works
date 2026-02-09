@@ -27,14 +27,21 @@ body {
   background-color: rgba(var(--ids__background-RGB), 1);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --ids__text-RGB: 255, 255, 255;
     --ids__background-RGB: 8, 11, 17;
     --ids__surface-RGB: 26, 30, 35;
     --ids__text-secondary-RGB: 100, 100, 100;
     --imgOutlineColor: var(--ids__background-RGB);
-    --izh-light-RGB: 37, 54, 113;
-    --izh-dark-RGB: 240, 241, 245;
+
+    --izh-light-RGB: var(--ids__text-RGB);
+    --izh-dark-RGB: var(--ids__text-RGB);
+
+    --bus-light-RGB: 250, 249, 248;
+    --bus-dark-RGB: var(--ids__text-RGB);
+
+    --transport-light-RGB: 250, 249, 248;
+    --transport-dark-RGB: var(--ids__text-RGB);
   }
-}
+} */

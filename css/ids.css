@@ -664,6 +664,7 @@
 
     @media (width < 767px) {
       margin: 1.5em -0.75rem 0 -0.75rem;
+      border-radius: calc(var(--ids__radius) * 2.5);
       padding-top: calc(var(--ids__density) * 0.5em);
       padding-left: calc(var(--ids__density) * 0.5em);
       padding-right: calc(var(--ids__density) * 0.5em);
