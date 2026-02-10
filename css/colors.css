@@ -1,48 +1,55 @@
 :root {
-  --ids__text-RGB: 8, 11, 17;
-  --ids__text-secondary-RGB: 189, 190, 192;
-  --ids__link-RGB: 255, 57, 1;
-  /* --ids__hover-RGB: var(--ids__text-secondary-RGB); */
-  --ids__hover-RGB: 255, 180, 4;
-  --ids__accent-RGB: 255, 57, 1;
-  --ids__code-RGB: 115, 120, 125;
-  --ids__mark-RGB: 255, 225, 0;
-  --ids__surface-RGB: 249, 250, 251;
-  /* --ids__surface-RGB: var(--ids__background-RGB); */
-  --ids__background-RGB: 255, 255, 255;
-  --ids__black-RGB: 8, 11, 17;
-  --imgOutlineColor: var(--ids__text-secondary-RGB);
+  --ids__text: 8, 11, 17;
+  --ids__text-secondary: 189, 190, 192;
+  --ids__link: 255, 57, 1;
+  /* --ids__hover: var(--ids__text-secondary); */
+  --ids__hover: 255, 180, 4;
+  --ids__accent: 255, 57, 1;
+  --ids__code: 115, 120, 125;
+  --ids__mark: 255, 225, 0;
+  --ids__surface: 249, 250, 251;
+  /* --ids__surface: var(--ids__background); */
+  --ids__background: 255, 255, 255;
+  --ids__black: 8, 11, 17;
+  --imgOutlineColor: var(--ids__text-secondary);
 
-  --izh-light-RGB: 240, 241, 245;
-  --izh-dark-RGB: 37, 54, 113;
+  --izh-light: 240, 241, 245;
+  --izh-dark: 37, 54, 113;
+  --izh-background: 223, 225, 234;
 
-  --bus-light-RGB: 250, 249, 248;
-  --bus-dark-RGB: 138, 112, 97;
+  --bus-light: 250, 249, 248;
+  --bus-dark: 138, 112, 97;
+  --bus-background: 246, 244, 243;
 
-  /* --transport-light-RGB: 250, 249, 248; */
-  --transport-dark-RGB: var(--ids__text-RGB);
+  --transport-light: 250, 249, 248;
+  --transport-dark: var(--ids__text);
+  --transport-background: 242, 243, 243;
 }
 
 body {
-  color: rgba(var(--ids__text-RGB), 1);
-  background-color: rgba(var(--ids__background-RGB), 1);
+  color: rgba(var(--ids__text), 1);
+  background-color: rgba(var(--ids__background), 1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --ids__text-RGB: 255, 255, 255;
-    --ids__background-RGB: 8, 11, 17;
-    --ids__surface-RGB: 26, 30, 35;
-    --ids__text-secondary-RGB: 100, 100, 100;
-    --imgOutlineColor: var(--ids__background-RGB);
+    --ids__text: 255, 255, 255;
+    --ids__background: 8, 11, 17;
+    --ids__surface: 26, 30, 35;
+    --ids__text-secondary: 100, 100, 100;
+    --imgOutlineColor: var(--ids__background);
 
-    --izh-light-RGB: var(--ids__text-RGB);
-    --izh-dark-RGB: var(--ids__text-RGB);
+    --izh-light: 37, 54, 113;
+    --izh-dark: 240, 241, 245;
+    --izh-background: var(--ids__surface);
 
-    --bus-light-RGB: 250, 249, 248;
-    --bus-dark-RGB: var(--ids__text-RGB);
 
-    --transport-light-RGB: 250, 249, 248;
-    --transport-dark-RGB: var(--ids__text-RGB);
+    --bus-light: 138, 112, 97;
+    --bus-dark: 250, 249, 248;
+    --bus-background: var(--ids__surface);
+
+    --transport-light: var(--ids__background);
+    --transport-dark: 250, 249, 248;
+    --transport-background: var(--ids__surface);
   }
 }
