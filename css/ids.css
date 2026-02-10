@@ -656,6 +656,13 @@
     /* margin-bottom: calc(var(--ids__density) * 1em); */
     margin-left: calc(var(--ids__density) * -1em);
 
+    &.project {
+      /* padding-top: 0; */
+      background: none;
+      /* margin: 0; */
+      /* color: rgb(var(--ids__background), 1); */
+    }
+
     &.izh {
       background-color: rgba(var(--izh-background), 1);
       /* color: rgb(var(--ids__background), 1); */
