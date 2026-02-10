@@ -785,11 +785,11 @@
 }
 
 .label {
-  /* background-color: rgba(var(--ids__text-secondary), 1); */
-  background-color: rgba(var(--ids__hover), 1);
+  background-color: rgba(var(--icon), 1);
+  /* background-color: rgba(var(--ids__), 1); */
   padding: 0.025em 0.25em 0.2em 0.35em;
   border-radius: 0.25em;
   font-weight: 500;
-  /* transform: translateY(0.35em); */
+  transform: translateY(-0.35em);
   /* margin-top: 5em; */
 }
