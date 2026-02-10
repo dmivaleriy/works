@@ -538,6 +538,11 @@
       color: rgba(var(--ids__text-secondary), 1);
       /* font-weight: 500; */
     }
+
+    &.all-projects {
+      /* color: rgba(var(--ids__text-secondary), 1); */
+      /* margin-bottom: 0.5em; */
+    }
   }
 
   & h4 {

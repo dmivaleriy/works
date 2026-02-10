@@ -13,6 +13,9 @@
   --ids__black: 8, 11, 17;
   --imgOutlineColor: var(--ids__text-secondary);
 
+  --icon: 189, 190, 192;
+  --icon-hover: 255, 180, 4;
+
   --izh-light: 240, 241, 245;
   --izh-dark: 37, 54, 113;
   --izh-background: 223, 225, 234;
