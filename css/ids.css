@@ -13,6 +13,10 @@
 
     &.aside {
       /* color: RGB(var(--ids__text-secondary)); */
+
+      &.task {
+        /* color: rgb(var(--ids__text-secondary)); */
+      }
     }
 
     &:hover {

@@ -42,6 +42,9 @@ body {
     --ids__text-secondary: 100, 100, 100;
     --imgOutlineColor: var(--ids__background);
 
+    --icon: var(--ids__text-secondary);
+    --icon-hover: 255, 180, 4;
+
     --izh-light: 37, 54, 113;
     --izh-dark: 240, 241, 245;
     --izh-background: var(--ids__surface);

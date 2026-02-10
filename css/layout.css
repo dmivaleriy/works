@@ -244,7 +244,7 @@ img {
 }
 
 .all-projects-image {
-  margin: 1.5em 0 .15em 0;
+  margin: 1em 0 .15em 0;
   height: auto;
 
 
@@ -353,11 +353,21 @@ footer {
 
   /* SVG inside link: default muted, hover accent */
   a.aside svg path {
-    fill: rgba(var(--icon), 1);
-    transition: fill 0.2s ease;
+    fill: rgba(var(--ids__text), 1);
+    transition: fill 0.5s ease;
   }
 
   a.aside:hover svg path {
+    transition: fill 0s ease;
+    fill: rgba(var(--icon-hover), 1);
+  }
+
+  a.aside.pic svg path {
+    fill: rgba(var(--icon), 1);
+    transition: fill 0.5s ease;
+  }
+
+  a.aside.pic:hover svg path {
     transition: fill 0s ease;
     fill: rgba(var(--icon-hover), 1);
   }
@@ -371,9 +381,10 @@ footer {
 
 .link-arrow {
   vertical-align: middle;
-  width: 5%;
+  display: inline-block;
+  width: 4%;
   padding-bottom: 1.5px;
-  margin-left: 0.35em;
+  margin-left: 0.25em;
   color: rgba(var(--ids__text), 1);
   /* width: 10px; */
   /* height: 10px; */
@@ -383,12 +394,12 @@ footer {
   /* height: 15px; */
 
   path {
-    fill: rgba(var(--ids__text), 1) !important;
+    /* fill: rgba(var(--ids__text), 1) !important; */
   }
 
   @media (width < 767px) {
-    padding-bottom: 1.5px;
-    width: 3.5%;
+    padding-bottom: 1.25px;
+    width: 2.5%;
     margin-left: 0.25em;
   }
 }
