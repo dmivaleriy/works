@@ -7,13 +7,14 @@
   --ids__accent: 255, 57, 1;
   --ids__code: 115, 120, 125;
   --ids__mark: 255, 225, 0;
-  --ids__surface: 249, 250, 251;
-  /* --ids__surface: var(--ids__background); */
+  /* --ids__surface: 249, 250, 251; */
+  --ids__surface: 243, 245, 244;
   --ids__background: 255, 255, 255;
   --ids__black: 8, 11, 17;
   --imgOutlineColor: var(--ids__text-secondary);
 
-  --icon: 189, 190, 192;
+  --icon: var(--ids__text-secondary);
+  /* --icon: var(--ids__surface); */
   --icon-hover: 255, 180, 4;
 
   --izh-light: 240, 241, 245;
@@ -26,7 +27,8 @@
 
   --transport-light: 250, 249, 248;
   --transport-dark: var(--ids__text);
-  --transport-background: 242, 243, 243;
+  /* --transport-background: 249, 250, 251; */
+  --transport-background: var(--ids__surface);
 }
 
 body {
