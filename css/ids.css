@@ -534,8 +534,8 @@
   & h3 {
     font-size: 1.5em;
     font-weight: 700;
-    line-height: calc(var(--ids__density) / 1.1);
-    margin-bottom: 0.6em;
+    line-height: calc(var(--ids__density) / 1.25);
+    margin-bottom: 0.5em;
 
     &.cv {
       /* opacity: 0.25; */

@@ -1,16 +1,16 @@
 :root {
   --ids__text: 8, 11, 17;
   --ids__text-secondary: 189, 190, 192;
-  --ids__link: 255, 57, 1;
+  /* --ids__link: 255, 57, 1; */
   /* --ids__hover: var(--ids__text-secondary); */
   --ids__hover: 255, 180, 4;
-  --ids__accent: 255, 57, 1;
-  --ids__code: 115, 120, 125;
-  --ids__mark: 255, 225, 0;
+  /* --ids__accent: 255, 57, 1; */
+  /* --ids__code: 115, 120, 125; */
+  /* --ids__mark: 255, 225, 0; */
   /* --ids__surface: 249, 250, 251; */
   --ids__surface: 243, 245, 244;
   --ids__background: 255, 255, 255;
-  --ids__black: 8, 11, 17;
+  /* --ids__black: 8, 11, 17; */
   --imgOutlineColor: var(--ids__text-secondary);
 
   --icon: var(--ids__text-secondary);
@@ -36,7 +36,7 @@ body {
   background-color: rgba(var(--ids__background), 1);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --ids__text: 255, 255, 255;
     --ids__background: 8, 11, 17;
@@ -60,4 +60,4 @@ body {
     --transport-dark: 250, 249, 248;
     --transport-background: var(--ids__surface);
   }
-}
+} */
