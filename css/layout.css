@@ -199,7 +199,7 @@
 }
 
 img {
-  box-shadow: 0 0 0 1px rgba(var(--imgOutlineColor), 0.05);
+  /* box-shadow: 0 0 0 1px rgba(var(--imgOutlineColor), 0.05); */
   /* border-style: 1px solid rgba(var(--ids__text), 1); */
   /* border: 1px solid red; */
   border-radius: var(--ids__radius);
@@ -216,6 +216,10 @@ img {
       width: 35%;
       transform: translateX(-2%);
     }
+  }
+
+  &.countour {
+    box-shadow: 0 0 0 1px rgba(var(--imgOutlineColor), 0.15);
   }
 
   &.page-cover {
