@@ -36,7 +36,7 @@ body {
   background-color: rgba(var(--ids__background), 1);
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --ids__text: 255, 255, 255;
     --ids__background: 8, 11, 17;
@@ -60,4 +60,4 @@ body {
     --transport-dark: 250, 249, 248;
     --transport-background: var(--ids__surface);
   }
-} */
+}
