@@ -13,9 +13,14 @@
 
     &.aside {
       /* color: RGB(var(--ids__text-secondary)); */
+      width: 90%;
 
       &.task {
         color: rgb(var(--ids__text-secondary));
+      }
+
+      @media (width < 767px) {
+        width: 100%;
       }
     }
 
@@ -361,14 +366,17 @@
 
         &.izh {
           color: rgb(var(--izh-dark), 1);
+          /* color: rgb(var(--ids__text-secondary)); */
         }
 
         &.bus {
           color: rgb(var(--bus-dark), 1);
+          /* color: rgb(var(--ids__text-secondary)); */
         }
 
         &.transport {
           color: rgb(var(--transport-dark), 1);
+          /* color: rgb(var(--ids__text-secondary)); */
 
         }
       }
