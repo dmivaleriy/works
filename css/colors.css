@@ -30,13 +30,13 @@
   /* --transport-background: 249, 250, 251; */
   --transport-background: var(--ids__surface);
 
-  --glava-background: 243, 246, 252;
-  --glava-dark: var(--ids__text);
+  --glava-background: 234, 238, 246;
+  --glava-dark: 47, 85, 168;
   --glava-light: var(--ids__background);
 
-  --medal-background: 243, 246, 252;
   --medal-dark: var(--ids__text);
   --medal-light: var(--ids__background);
+  --medal-background: var(--ids__surface);
 }
 
 body {
@@ -56,16 +56,24 @@ body {
     --icon-hover: 255, 180, 4;
 
     --izh-light: 37, 54, 113;
-    --izh-dark: 240, 241, 245;
+    --izh-dark: var(--ids__text);
     --izh-background: var(--ids__surface);
 
 
     --bus-light: 138, 112, 97;
-    --bus-dark: 250, 249, 248;
+    --bus-dark: var(--ids__text);
     --bus-background: var(--ids__surface);
 
     --transport-light: var(--ids__background);
-    --transport-dark: 250, 249, 248;
+    --transport-dark: var(--ids__text);
     --transport-background: var(--ids__surface);
+
+    --glava-light: var(--ids__background);
+    --glava-dark: var(--ids__text);
+    --glava-background: var(--ids__surface);
+
+    --medal-light: var(--ids__background);
+    --medal-dark: var(--ids__text);
+    --medal-background: var(--ids__surface);
   }
 }

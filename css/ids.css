@@ -257,6 +257,26 @@
               color: rgb(var(--ids__background), 1);
             }
           }
+
+          &.medal {
+            background-color: rgba(var(--ids__background), 1);
+            color: rgb(var(--medal-dark), 1);
+
+            &:hover {
+              background-color: rgba(var(--medal-dark), 1);
+              color: rgb(var(--medal-light), 1);
+            }
+          }
+
+          &.glava {
+            background-color: rgba(var(--ids__background), 1);
+            color: rgb(var(--glava-dark), 1);
+
+            &:hover {
+              background-color: rgba(var(--glava-dark), 1);
+              color: rgb(var(--glava-light), 1);
+            }
+          }
         }
 
         @media (width < 767px) {
@@ -379,6 +399,16 @@
           color: rgb(var(--transport-dark), 1);
           /* color: rgb(var(--ids__text-secondary)); */
 
+        }
+
+        &.medal {
+          color: rgb(var(--medal-dark), 1);
+          /* color: rgb(var(--ids__text-secondary)); */
+        }
+
+        &.glava {
+          color: rgb(var(--glava-dark), 1);
+          /* color: rgb(var(--ids__text-secondary)); */
         }
       }
 
