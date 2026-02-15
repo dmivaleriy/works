@@ -642,13 +642,13 @@ function createIzhsWithLetterPDF(savePDF) {
 		},
 		// Литера дома
 		{
-			'contents': houseLetter,
-			'fontSize': 350,
-			'fontTracking': 20,
+			'contents': '/' + houseLetter,
+			'fontSize': 183.74,
+			'fontTracking': -20,
 			'align': 'center',
 			'position': {
 				'x': 0,
-				'y': 162.069,
+				'y': 153.212,
 			},
 			'font': 'IZH-260-A',
 			'fontStyle': 'normal',
@@ -662,6 +662,8 @@ function createIzhsWithLetterPDF(savePDF) {
 	var widthNameRus = measureTextWidth(words[1]);
 	var widthNameUdm = measureTextWidth(words[2]);
 	var widthTypeUdm = measureTextWidth(words[3]);
+	var widthNumber = measureTextWidth(words[4]);
+	var widthLetter = measureTextWidth(words[5]);
 	var widthNumber = 140;
 
 	signIndentIzhs = 30;
@@ -705,51 +707,6 @@ function createIzhsWithLetterPDF(savePDF) {
 	doc.setDrawColor(0);
 	doc.setFillColor(backColor.color.c / 100, backColor.color.m / 100, backColor.color.y / 100, backColor.color.k / 100);
 	doc.roundedRect(verticalDividerPosition, 0, verticalDividerWidth, signHeightIzhs, 0, 0, 'F');
-
-
-
-
-	// Проверка верстки
-
-	// Левый отступ
-	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
-	doc.rect(0, 0, signIndentIzhs, signHeightIzhs, 'F')
-
-	// Правый отступ
-	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
-	doc.rect(signWidth - signIndentIzhs, 0, signIndentIzhs, signHeightIzhs, 'F')
-
-	// Отступ до разделителя
-	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
-	doc.rect(verticalDividerPosition - signIndentIzhs, 0, signIndentIzhs, signHeightIzhs, 'F')
-
-	// Отступ после разделителя
-	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
-	doc.rect(verticalDividerPosition + verticalDividerWidth, 0, signIndentIzhs, signHeightIzhs, 'F')
-
-	// Верхний отступ русского текста
-	doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
-	doc.rect(signIndentIzhs, 0, signWidth - signIndentIzhs * 3 - widthNumber - verticalDividerWidth, 29, 'F')
-
-	//Пробел русского текста
-	doc.setFillColor(checkColor3.color.c / 100, checkColor3.color.m / 100, checkColor3.color.y / 100, checkColor3.color.k / 100);
-	doc.rect(signIndentIzhs + widthTypeRus, 29, spaceValueIzhs, 42, 'F')
-
-	// Нижний отступ русского текста
-	doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
-	doc.rect(signIndentIzhs, 71, signWidth - signIndentIzhs * 3 - widthNumber - verticalDividerWidth, 29, 'F')
-
-	// Верхний отступ удмуртского текста
-	doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
-	doc.rect(signIndentIzhs, 100, signWidth - signIndentIzhs * 3 - widthNumber - verticalDividerWidth, 29, 'F')
-
-	//Пробел удмуртского текста
-	doc.setFillColor(checkColor3.color.c / 100, checkColor3.color.m / 100, checkColor3.color.y / 100, checkColor3.color.k / 100);
-	doc.rect(signIndentIzhs + widthNameUdm, 129, spaceValueIzhs, 42, 'F')
-
-	// Нижний отступ удмуртского текста
-	doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
-	doc.rect(signIndentIzhs, 171, signWidth - signIndentIzhs * 3 - widthNumber - verticalDividerWidth, 29, 'F')
 
 
 	var rightShiftValueRu = widthTypeRus + spaceValueIzhs + signIndentIzhs;
@@ -839,7 +796,33 @@ function createIzhsWithLetterPDF(savePDF) {
 				});
 			doc.rect(0, 0, signWidth, signHeightIzhs, 'F');
 			doc.internal.write('Q');
-		} else {
+		} else if (i == 4) {
+			words[i].position.x = verticalDividerPosition + verticalDividerWidth + signIndentIzhs + 68.841;
+			word = words[i];
+			doc.internal.write('q');
+			doc.setFont(word.font);
+			doc.setFontStyle(word.fontStyle);
+			doc.setFontSize(word.fontSize);
+			doc.setTextColor(
+				cmykVal(word.color.c),
+				cmykVal(word.color.m),
+				cmykVal(word.color.y),
+				cmykVal(word.color.k)
+			);
+			doc.text(
+				word.contents,
+				word.position.x,
+				word.position.y,
+				{
+					'baseline': 'bottom',
+					'charSpace': getCharSpace(word.fontSize, word.fontTracking),
+					// 'lineHeightFactor': word.fontLeading / word.fontSize,
+					'align': word.align,
+					'renderingMode': 'addToPathForClipping'
+				});
+			doc.rect(0, 0, signWidth, signHeightIzhs, 'F');
+			doc.internal.write('Q');
+		} else if (i == 5) {
 			words[i].position.x = verticalDividerPosition + verticalDividerWidth + signIndentIzhs + 68.841;
 			word = words[i];
 			doc.internal.write('q');
@@ -1604,10 +1587,10 @@ function createIzhsNumberWithLetterPDF(savePDF) {
 		'rightShift': false,
 	}, {
 		'contents': '/' + houseLetter,
-		'fontSize': 352.1,
-		'fontTracking': 20,
+		'fontSize': 183.74,
+		'fontTracking': -20,
 		'align': 'left',
-		'position': { 'x': 0, 'y': 162.111 },
+		'position': { 'x': 0, 'y': 153.212 },
 		'font': 'IZH-260-A',
 		'fontStyle': 'normal',
 		'color': Object.assign({}, backColor.color),
@@ -1619,7 +1602,7 @@ function createIzhsNumberWithLetterPDF(savePDF) {
 	var lastDigit = String(houseNumber).trim().slice(-1);
 	var letterGap = (lastDigit === '1') ? 8 : (lastDigit === '2' || lastDigit === '4') ? 5 : (lastDigit === '7') ? -15 : 0;
 	var contentWidth = widthNumber + letterGap + widthLetter;
-	signWidth = signHeightIzhs;
+	signWidth = Math.max(contentWidth + 60, signHeightIzhs);
 	var startX = (signWidth - contentWidth) / 2;
 	words[0].position.x = startX;
 	words[1].position.x = startX + widthNumber + letterGap;
@@ -1912,7 +1895,7 @@ function createOknPDF(savePDF) {	// Получение значений из ф�
 	}
 }
 
-// !! Табличка для ОКН с литерой, 400x600 мм
+// Табличка для ОКН с литерой, 400x600 мм
 function createOknWithLetterPDF(savePDF) {	// Получение значений из формы
 	var streetType = $('#streetType').val();
 	var streetName = getStreetNameRawValue();
@@ -2000,12 +1983,12 @@ function createOknWithLetterPDF(savePDF) {	// Получение значени�
 		// Номер дома
 		{
 			'contents': houseNumber,
-			'fontSize': 850,
+			'fontSize': 609,
 			'fontTracking': 10,
 			'align': 'left',
 			'position': {
 				'x': 0,
-				'y': 323.979,
+				'y': 279.08,
 			},
 			'font': 'IZH-260-A',
 			'fontStyle': 'normal',
@@ -2016,11 +1999,11 @@ function createOknWithLetterPDF(savePDF) {	// Получение значени�
 		{
 			'contents': '/' + houseLetter,
 			'fontSize': 350,
-			'fontTracking': 20,
+			'fontTracking': -20,
 			'align': 'left',
 			'position': {
 				'x': 0,
-				'y': 323.979,
+				'y': 265.25,
 			},
 			'font': 'IZH-260-A',
 			'fontStyle': 'normal',

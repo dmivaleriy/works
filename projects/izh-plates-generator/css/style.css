@@ -8,6 +8,7 @@
 
 body {
   padding: 0px 10px 0px 10px;
+  min-width: 920px;
   /* width: 1200px; */
   /* min-width: 1200px; */
 }
