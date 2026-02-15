@@ -29,6 +29,14 @@
   --transport-dark: var(--ids__text);
   /* --transport-background: 249, 250, 251; */
   --transport-background: var(--ids__surface);
+
+  --glava-background: 243, 246, 252;
+  --glava-dark: var(--ids__text);
+  --glava-light: var(--ids__background);
+
+  --medal-background: 243, 246, 252;
+  --medal-dark: var(--ids__text);
+  --medal-light: var(--ids__background);
 }
 
 body {

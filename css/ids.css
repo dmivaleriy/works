@@ -689,6 +689,16 @@
       /* box-shadow: 0 0 0 1px rgba(var(--ids__background), .15); */
     }
 
+    &.glava {
+      background-color: rgba(var(--glava-background), 1);
+      /* box-shadow: 0 0 0 1px rgba(var(--ids__background), .15); */
+    }
+
+    &.medal {
+      background-color: rgba(var(--medal-background), 1);
+      /* box-shadow: 0 0 0 1px rgba(var(--ids__background), .15); */
+    }
+
     @media (width < 767px) {
       margin: 1.5em -0.75rem 0 -0.75rem;
       border-radius: calc(var(--ids__radius) * 2.5);
