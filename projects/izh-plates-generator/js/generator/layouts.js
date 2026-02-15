@@ -1787,47 +1787,6 @@ function createOknPDF(savePDF) {	// Получение значений из ф�
 	doc.setFillColor(backColor.color.c / 100, backColor.color.m / 100, backColor.color.y / 100, backColor.color.k / 100);
 	doc.roundedRect(0, signHeightOkn - 170, signWidthOkn, 170, signRadius, signRadius, 'F');
 
-	/* // Проверка верстки
-
-	// Левый отступ
-	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
-	doc.rect(0, 0, signIndentIzhs, signHeightIzhs, 'F')
-
-	// Правый отступ
-	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
-	doc.rect(signWidth - signIndentIzhs, 0, signIndentIzhs, signHeightIzhs, 'F')
-
-	// Отступ до разделителя
-	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
-	doc.rect(verticalDividerPosition - signIndentIzhs, 0, signIndentIzhs, signHeightIzhs, 'F')
-
-	// Отступ после разделителя
-	doc.setFillColor(checkColor1.color.c / 100, checkColor1.color.m / 100, checkColor1.color.y / 100, checkColor1.color.k / 100);
-	doc.rect(verticalDividerPosition + verticalDividerWidth, 0, signIndentIzhs, signHeightIzhs, 'F')
-
-	// Верхний отступ русского текста
-	doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
-	doc.rect(signIndentIzhs, 0, signWidth - signIndentIzhs * 3 - widthNumber - verticalDividerWidth, 29, 'F')
-
-	//Пробел русского текста
-	doc.setFillColor(checkColor3.color.c / 100, checkColor3.color.m / 100, checkColor3.color.y / 100, checkColor3.color.k / 100);
-	doc.rect(signIndentIzhs + widthTypeRus, 29, spaceValueIzhs, 42, 'F')
-
-	// Нижний отступ русского текста
-	doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
-	doc.rect(signIndentIzhs, 71, signWidth - signIndentIzhs * 3 - widthNumber - verticalDividerWidth, 29, 'F')
-
-	// Верхний отступ удмуртского текста
-	doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
-	doc.rect(signIndentIzhs, 100, signWidth - signIndentIzhs * 3 - widthNumber - verticalDividerWidth, 29, 'F')
-
-	//Пробел удмуртского текста
-	doc.setFillColor(checkColor3.color.c / 100, checkColor3.color.m / 100, checkColor3.color.y / 100, checkColor3.color.k / 100);
-	doc.rect(signIndentIzhs + widthNameUdm, 129, spaceValueIzhs, 42, 'F')
-
-	// Нижний отступ удмуртского текста
-	doc.setFillColor(checkColor2.color.c / 100, checkColor2.color.m / 100, checkColor2.color.y / 100, checkColor2.color.k / 100);
-	doc.rect(signIndentIzhs, 171, signWidth - signIndentIzhs * 3 - widthNumber - verticalDividerWidth, 29, 'F') */
 
 
 	// var rightShiftValueRu = widthTypeRus + spaceValueIzhs + signIndentIzhs;
@@ -1896,29 +1855,6 @@ function createOknPDF(savePDF) {	// Получение значений из ф�
 		} else if (i == 3) {
 			words[i].position.x = xCenter;
 			word = words[i];
-			doc.internal.write('q');
-			doc.setFont(word.font);
-			doc.setFontStyle(word.fontStyle);
-			doc.setFontSize(word.fontSize);
-			doc.setTextColor(
-				cmykVal(word.color.c),
-				cmykVal(word.color.m),
-				cmykVal(word.color.y),
-				cmykVal(word.color.k)
-			);
-			doc.text(
-				word.contents,
-				word.position.x,
-				word.position.y,
-				{
-					'baseline': 'bottom',
-					'charSpace': getCharSpace(word.fontSize, word.fontTracking),
-					'align': word.align,
-					'renderingMode': 'addToPathForClipping'
-				});
-			doc.rect(0, 0, signWidthOkn, signHeightOkn, 'F');
-			doc.internal.write('Q');
-		} else if (i == 4 || i == 5) {
 			doc.internal.write('q');
 			doc.setFont(word.font);
 			doc.setFontStyle(word.fontStyle);
