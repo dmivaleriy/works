@@ -630,7 +630,7 @@ function createIzhsWithLetterPDF(savePDF) {
 			'contents': houseNumber,
 			'fontSize': 350,
 			'fontTracking': 20,
-			'align': 'center',
+			'align': 'left',
 			'position': {
 				'x': 0,
 				'y': 162.069,
@@ -645,7 +645,7 @@ function createIzhsWithLetterPDF(savePDF) {
 			'contents': '/' + houseLetter,
 			'fontSize': 183.74,
 			'fontTracking': -20,
-			'align': 'center',
+			'align': 'left',
 			'position': {
 				'x': 0,
 				'y': 153.212,
@@ -662,20 +662,22 @@ function createIzhsWithLetterPDF(savePDF) {
 	var widthNameRus = measureTextWidth(words[1]);
 	var widthNameUdm = measureTextWidth(words[2]);
 	var widthTypeUdm = measureTextWidth(words[3]);
-	var widthNumber = measureTextWidth(words[4]);
+
+	var widthNumberMeasured = measureTextWidth(words[4]);
 	var widthLetter = measureTextWidth(words[5]);
-	var widthNumber = 140;
+	var widthNumber = widthNumberMeasured > 0 ? widthNumberMeasured : 80;
+	// var widthNumber = 740;
 
 	signIndentIzhs = 30;
 	spaceValueIzhs = 23;
 	verticalDividerWidth = 5;
 	// Рассчет ширины таблички
 	var preWidth = Math.max((widthTypeRus + widthNameRus), (widthNameUdm + widthTypeUdm));
-	var width = Math.round(signIndentIzhs * 4 + preWidth + spaceValueIzhs + widthNumber + verticalDividerWidth);
+	var width = Math.round(signIndentIzhs * 4 + preWidth + spaceValueIzhs + widthNumber + verticalDividerWidth + widthLetter);
 	// Set sign width
 	signWidth = width;
 
-	var verticalDividerPosition = signWidth - signIndentIzhs * 2 - widthNumber - verticalDividerWidth;
+	var verticalDividerPosition = signWidth - signIndentIzhs * 2 - widthNumber - widthLetter - verticalDividerWidth;
 
 	let doc = new jsPDF({
 		orientation: 'l',
@@ -701,7 +703,7 @@ function createIzhsWithLetterPDF(savePDF) {
 	// Рисование нижней линии
 	// doc.setDrawColor(0);
 	doc.setFillColor(backColor.color.c / 100, backColor.color.m / 100, backColor.color.y / 100, backColor.color.k / 100);
-	doc.roundedRect(0, signHeightIzhs / 2, signWidth - signIndentIzhs * 2 - widthNumber, signHeightIzhs / 2, signRadius, signRadius, 'F');
+	doc.roundedRect(0, signHeightIzhs / 2, signWidth - signIndentIzhs * 2 - widthNumber - widthLetter, signHeightIzhs / 2, signRadius, signRadius, 'F');
 
 	// Рисование разделителя
 	doc.setDrawColor(0);
@@ -797,7 +799,8 @@ function createIzhsWithLetterPDF(savePDF) {
 			doc.rect(0, 0, signWidth, signHeightIzhs, 'F');
 			doc.internal.write('Q');
 		} else if (i == 4) {
-			words[i].position.x = verticalDividerPosition + verticalDividerWidth + signIndentIzhs + 68.841;
+			// номер дома
+			words[i].position.x = verticalDividerPosition + verticalDividerWidth + signIndentIzhs;
 			word = words[i];
 			doc.internal.write('q');
 			doc.setFont(word.font);
@@ -823,7 +826,8 @@ function createIzhsWithLetterPDF(savePDF) {
 			doc.rect(0, 0, signWidth, signHeightIzhs, 'F');
 			doc.internal.write('Q');
 		} else if (i == 5) {
-			words[i].position.x = verticalDividerPosition + verticalDividerWidth + signIndentIzhs + 68.841;
+			// литера дома
+			words[i].position.x = verticalDividerPosition + verticalDividerWidth + signIndentIzhs + widthNumberMeasured;
 			word = words[i];
 			doc.internal.write('q');
 			doc.setFont(word.font);
