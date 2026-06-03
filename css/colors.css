@@ -3,7 +3,9 @@
   --ids__text-secondary: 189, 190, 192;
   /* --ids__link: 255, 57, 1; */
   /* --ids__hover: var(--ids__text-secondary); */
-  --ids__hover: 255, 180, 4;
+  /* --ids__hover: var(--glava-dark); */
+  /* --ids__hover: 255, 180, 4; */
+  --ids__hover: var(--glava-dark);
   /* --ids__accent: 255, 57, 1; */
   /* --ids__code: 115, 120, 125; */
   /* --ids__mark: 255, 225, 0; */
@@ -12,6 +14,9 @@
   --ids__background: 255, 255, 255;
   /* --ids__black: 8, 11, 17; */
   --imgOutlineColor: var(--ids__text-secondary);
+
+  --header-hover-background: var(--glava-background);
+  --header-hover-text: var(--glava-dark);
 
   --icon: var(--ids__text-secondary);
   /* --icon: var(--ids__surface); */
@@ -44,7 +49,7 @@ body {
   background-color: rgba(var(--ids__background), 1);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --ids__text: 255, 255, 255;
     --ids__background: 8, 11, 17;
@@ -76,4 +81,4 @@ body {
     --medal-dark: var(--ids__text);
     --medal-background: var(--ids__surface);
   }
-}
+} */

@@ -33,7 +33,8 @@
 
   <link rel="stylesheet" type="text/css"
     href="../../projects/izh-plates-generator/css/style.css">
-  <!--   <link rel="stylesheet" type="text/css" href="../../css/main.css"> -->
+  <link rel="stylesheet" type="text/css" href="../../css/ids.css">
+  <link rel="stylesheet" type="text/css" href="../../css/layout.css">
   <script>
     (function () {
       var theme = localStorage.getItem('izh-plates-theme') || 'light';
@@ -45,7 +46,7 @@
 <body>
 
   <!-- <div class="ids__wrapper"> -->
-  <div class="gap L"></div>
+  <!-- <div class="gap L"></div> -->
   <div class="gap L"></div>
 
   <div class="centered header-row">
@@ -186,7 +187,7 @@
     </a>
   </div>
 
-  <div class="centered input-error-area">
+  <div class="centered input-error-area" style="height: 0px;">
     <div id="street-name-warning">
       <p id="street-name-warning-message">Опечатка: такой улицы нет</p>
     </div>
@@ -205,10 +206,52 @@
     </div>
   </div>
 
-  <div class="gap XL"></div>
+  <!-- ИНСТРУКЦИЯ -->
+  <div class="gap L"></div>
+
+  <div class="ids__wrapper">
+    <div class="aside"
+      style="background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.1);">
+      <!-- <div class="centered header-row"> -->
+      <div class="gap S"></div>
+      <h1 style="text-align: left;">Как пользоваться генератором</h1>
+      <div class="gap M"></div>
+      <!-- </div> -->
+      <!-- <p class="aside figcaption izh">Все работает прямо в&nbsp;браузере&nbsp;&mdash; не&nbsp;нужно ничего скачивать
+        и&nbsp;устанавливать.</p> -->
+      <div class="main-projects-2col comparison">
+        <div>
+          <img style="border-radius: var(--ids__radius); overflow: hidden; width: 100%; border-radius: 10px;"
+            src="../../assets/images/izh-plates-generator/izh-plates-generator-autofill.jpg"
+            alt="Автозаполнение адреса">
+          <p class="aside figcaption izh" style="text-align: left; margin-top: 10px;">Автозаполнение адреса исключает
+            ошибки
+            и&nbsp;опечатки.</p>
+        </div>
+        <div>
+          <img style="border-radius: var(--ids__radius); overflow: hidden; width: 100%; border-radius: 10px;"
+            src="../../assets/images/izh-plates-generator/izh-plates-generator-udmurt.jpg"
+            alt="Перевод на удмуртский язык">
+          <p class="aside figcaption izh" lang="ru" style="text-align: left; margin-top: 10px;">Перевод
+            на&nbsp;удмурт&shy;ский язык происходит автоматически.
+          </p>
+        </div>
+      </div>
+      <div class="gap M"></div>
+      <div>
+        <img style="border-radius: var(--ids__radius); overflow: hidden; width: 100%; border-radius: 10px;"
+          src="../../assets/images/izh-plates-generator/izh-plates-generator-output.jpg"
+          alt="">
+        <p class="aside figcaption izh" style="text-align: left; margin-top: 10px;">На&nbsp;выходе&nbsp;&mdash; готовые
+          к&nbsp;производству ПДФ-файлы
+          в&nbsp;миллиметрах и&nbsp;ЦМИКе.</p>
+      </div>
+      <div class="ids__space L"></div>
+    </div>
+  </div>
 
   <!-- Скрытые инпуты -->
-  <div class="hidden-fields">
+  <div class="hidden-fields" style="height: 0px;">
     <input id="streetType" type="text" onInput="this.parentNode.dataset.value = this.value" placeholder=""
       spellcheck="false" value="">
     <!-- Raw (name-only) value used by generator logic -->
